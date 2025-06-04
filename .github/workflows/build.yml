@@ -1,0 +1,53 @@
+name: RegionAPI | Build and deploy
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: 'The version of the new build.'
+        required: true
+        type: string
+      isRelease:
+        description: 'Is this a release build?'
+        required: true
+        type: boolean
+
+permissions:
+  contents: write
+  packages: write
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up to JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          cache: 'maven'
+          java-version: 21
+
+      - name: Set Project Version
+        run: mvn versions:set -DnewVersion=${{ inputs.version }}
+
+      - name: Build with Maven
+        run: mvn -B clean package
+
+      - name: Deploy to GitHub Packages # Repository is set in pom.xml
+        run: mvn deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload assets to release
+        if: ${{ inputs.isRelease }}
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          files: |
+            target/api-${{ inputs.version }}.jar
+            target/api-${{ inputs.version }}-sources.jar
+            target/api-${{ inputs.version }}-javadoc.jar
