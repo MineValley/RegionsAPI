@@ -1,6 +1,6 @@
-# ![Logo](https://cdn.minevalley.eu/branding/logo_64px_cropped.png) - RegionAPI
+# ![Logo](https://cdn.minevalley.eu/branding/logo_64px_cropped.png) - RegionsAPI
 
-The RegionAPI provides essential features and access to the region system of MineValleyEU. This allows world manipulation
+The RegionsAPI provides essential features and access to the region system of MineValleyEU. This allows world manipulation
 and event handling.
 
 > [!NOTE]\
@@ -14,8 +14,8 @@ Before proceeding, ensure you’ve added a token to your `settings.xml` file (de
 ```xml
 
 <repository>
-    <id>RegionAPI</id>
-    <url>https://maven.pkg.github.com/MineValley/RegionAPI</url>
+    <id>RegionsAPI</id>
+    <url>https://maven.pkg.github.com/MineValley/RegionsAPI</url>
     <snapshots>
         <enabled>true</enabled>
     </snapshots>
@@ -25,7 +25,7 @@ Before proceeding, ensure you’ve added a token to your `settings.xml` file (de
 ```xml
 
 <dependency>
-    <groupId>minevalley.region</groupId>
+    <groupId>minevalley.regions</groupId>
     <artifactId>api</artifactId>
     <version>LATEST</version>
 </dependency>
@@ -66,7 +66,7 @@ GitHub username and `TOKEN` with the generated token.
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
         <server>
-            <id>RegionAPI</id>
+            <id>RegionsAPI</id>
             <username>USERNAME</username>
             <password>TOKEN</password>
         </server>
