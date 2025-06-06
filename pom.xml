@@ -8,6 +8,7 @@
 
     <properties>
         <version>0.0.0</version>
+        <core-api.version>1.294.0</core-api.version>
 
         <lombok.version>1.18.30</lombok.version>
 
@@ -78,12 +79,27 @@
 
     <repositories>
         <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/MineValley/CoreAPI</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
             <id>paper-mc</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
     </repositories>
 
     <dependencies>
+        <!-- CoreAPI -->
+        <dependency>
+            <groupId>minevalley.core</groupId>
+            <artifactId>api</artifactId>
+            <version>${core-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Paper -->
         <dependency>
             <groupId>io.papermc.paper</groupId>

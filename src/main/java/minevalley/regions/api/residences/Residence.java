@@ -1,8 +1,12 @@
 package minevalley.regions.api.residences;
 
 import lombok.NonNull;
+import minevalley.core.api.Registrant;
+import minevalley.core.api.economy.BankAccount;
+import minevalley.core.api.users.User;
 import minevalley.regions.api.core.PlayerLocation;
 import minevalley.regions.api.core.Region;
+import minevalley.regions.api.structures.Street;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 

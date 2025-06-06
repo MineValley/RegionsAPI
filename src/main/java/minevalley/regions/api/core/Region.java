@@ -1,5 +1,6 @@
 package minevalley.regions.api.core;
 
+import minevalley.core.api.users.OnlineUser;
 import minevalley.regions.api.residences.Residence;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -71,7 +72,6 @@ public interface Region {
      * @param target
      */
     default void kickAllUsers(@Nonnull Location target) {
-
     }
 
     void setAllowEnter(boolean allow);
