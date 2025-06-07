@@ -15,6 +15,9 @@ public class ServerStartChunkLoadEvent extends Event {
 
     public static final HandlerList HANDLER_LIST = new HandlerList();
 
+    /**
+     * Chunk that is loaded.
+     */
     private final Chunk chunk;
 
     public static HandlerList getHandlerList() {

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
+import java.util.stream.Stream;
 
 @SuppressWarnings("unused")
 public interface Area {
@@ -28,15 +28,15 @@ public interface Area {
     Block getMaxBlock();
 
     /**
-     * Gets a list of all the blocks contained by this area.
+     * Gets a stream of all the blocks contained by this area.
      * <p>
      * <b>Note:</b> This method consumes quiet a lot of resources. Refrain from using it, when other methods work fine as well.
      *
-     * @return list of all blocks contained by this area.
+     * @return stream of all blocks contained by this area.
      * @see #contains(Block)
      */
     @Nonnull
-    List<Block> getBlocks();
+    Stream<Block> getBlocks();
 
     /**
      * Checks whether the given block is contained by the area.

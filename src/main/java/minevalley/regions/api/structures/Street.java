@@ -1,41 +1,55 @@
 package minevalley.regions.api.structures;
 
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import minevalley.regions.api.core.PlayerLocation;
 import org.bukkit.Location;
+import org.jetbrains.annotations.Contract;
 
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
 import java.util.List;
 
 @SuppressWarnings("unused")
 public interface Street {
 
     /**
-     * Every street will be assigned an ID. It should be used to refer to this street.
+     * Gets the id of this street which can be used to refer to the street.
      *
      * @return id as integer.
      */
     int getId();
 
     /**
-     * Gets this streets name. Don't use it to refer to the street. Names might change in the future. Use getId instead!
+     * Gets this streets name.
+     * <p>
+     * <b>Note:</b> Don't use it to refer to the street. Names might change in the future. Use getId instead!
      *
      * @return name as string.
+     * @see #getId()
+     * @see #getShortName()
      */
+    @Nonnull
+    @Contract(pure = true)
     String getName();
 
+    /**
+     * Gets this street's name in a shortened form (Friedrichstraße -> Friedrichstr.)
+     *
+     * @return shortened street name
+     */
+    @Nonnull
+    @Contract(pure = true)
     String getShortName();
 
     /**
-     * Get the description of this street. Not every street does have a description. If the street doesn't have a description, this is null.
+     * Gets the description of this street. Not every street does have a description. If the street doesn't have a description, this is null.
      *
-     * @return description as string.
+     * @return description as string
      */
+    @Nonnull
+    @Contract(pure = true)
     String getDescription();
-
-    void remove();
 
     @Setter
     class StreetHelper {
@@ -75,22 +89,20 @@ public interface Street {
         NavigationPoint getNearest(Location location);
     }
 
-    @Getter
-    @RequiredArgsConstructor
-    class NavigationPoint implements PlayerLocation {
-        private final Street street;
-        private final Location location;
-        private final String name;
-        private final List<Connection> connections;
+    @SuppressWarnings("ConstantValue")
+    record NavigationPoint(Street street, Location location, String name,
+                           List<Connection> connections) implements PlayerLocation {
 
-        public double distance(Location location) {
-            if (location == null) return -1;
-            if (this.location.getWorld() != location.getWorld()) return -1;
+        public double distance(@Nonnull Location location) throws IllegalArgumentException {
+            if (location == null) throw new IllegalArgumentException("Location cannot be null");
+            if (this.location.getWorld() != location.getWorld()) {
+                throw new IllegalArgumentException("Locations must be in the same world");
+            }
             return this.location.distance(location);
         }
 
-        public double distance(NavigationPoint navigationPoint) {
-            return distance(navigationPoint.getLocation());
+        public double distance(@Nonnull NavigationPoint navigationPoint) throws IllegalArgumentException {
+            return distance(navigationPoint.location());
         }
 
         public void addConnection(Connection connection) {
@@ -106,6 +118,7 @@ public interface Street {
 
         int weight();
 
+        @SuppressWarnings("BooleanMethodIsAlwaysInverted")
         boolean isUsableFromHere(NavigationPoint navigationPoint);
 
         NavigationHint getNavigationHint(NavigationPoint from);
@@ -126,13 +139,8 @@ public interface Street {
         TURN
     }
 
-    @Getter
-    @RequiredArgsConstructor
-    class OneWayConnection implements Connection {
-        private final NavigationPoint from, to;
-        private final int speedLimit;
-        private final NavigationHint navigationHint;
-
+    record OneWayConnection(@Nonnull NavigationPoint from, @Nonnull NavigationPoint to,
+                            @Nonnegative int speedLimit, @Nonnull NavigationHint navigationHint) implements Connection {
         @Override
         public int weight() {
             return (int) Math.round(from.distance(to) * speedLimit);
@@ -156,13 +164,10 @@ public interface Street {
         }
     }
 
-    @Getter
-    @RequiredArgsConstructor
-    class TwoWayConnection implements Connection {
-        private final NavigationPoint point1, point2;
-        private final int speedLimit;
-        private final NavigationHint point1To2, point2To1;
-
+    record TwoWayConnection(@Nonnull NavigationPoint point1, @Nonnull NavigationPoint point2,
+                            @Nonnegative int speedLimit,
+                            @Nonnull NavigationHint point1To2,
+                            @Nonnull NavigationHint point2To1) implements Connection {
         @Override
         public int weight() {
             return (int) Math.round(point1.distance(point2) * speedLimit);

@@ -11,6 +11,9 @@ import javax.annotation.Nonnull;
 @SuppressWarnings("unused")
 public class UserLoadChunkEvent extends OnlineUserEvent {
 
+    /**
+     * Chunk the user loads
+     */
     private final Chunk chunk;
 
     public UserLoadChunkEvent(@Nonnull OnlineUser user, @Nonnull Chunk chunk) {

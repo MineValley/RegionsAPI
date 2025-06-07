@@ -18,7 +18,16 @@ public class UserEnterChunkEvent extends OnlineUserEvent implements Cancellable 
 
     @Setter
     private boolean cancelled = false;
-    private final Chunk from, to;
+
+    /**
+     * Chunk this user comes from.
+     */
+    private final Chunk from;
+
+    /**
+     * Chunk this user enters.
+     */
+    private final Chunk to;
 
     public UserEnterChunkEvent(@Nonnull OnlineUser user, @Nonnull Chunk from, @Nonnull Chunk to) {
         super(user);

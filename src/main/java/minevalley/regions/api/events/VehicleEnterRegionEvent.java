@@ -23,7 +23,15 @@ public class VehicleEnterRegionEvent extends Event implements Cancellable {
 
     @Setter
     private boolean cancelled = false;
+
+    /**
+     * Vehicle that enters the region.
+     */
     private final Vehicle vehicle;
+
+    /**
+     * Region that is entered by the vehicle.
+     */
     private final Region region;
 
     public static HandlerList getHandlerList() {

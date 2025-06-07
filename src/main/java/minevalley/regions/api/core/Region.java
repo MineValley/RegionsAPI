@@ -67,15 +67,31 @@ public interface Region {
     /**
      * Kicks all users out of this region.
      * <p>
-     * <b>Note:</b> This
+     * <b>Note:</b> This method does not kick team members.
      *
-     * @param target
+     * @param target location to kick the users to
      */
     default void kickAllUsers(@Nonnull Location target) {
+        getUsersInRegion().filter(user -> !user.isTeamler()).forEach(user -> kickUser(user, target));
     }
 
+    /**
+     * Sets whether users are allowed to enter this region.
+     * <p>
+     * <b>Note:</b> This does not affect team members
+     *
+     * @param allow whether users may enter this region
+     */
     void setAllowEnter(boolean allow);
 
+    /**
+     * Gets whether users are allowed to enter this region.
+     * <p>
+     * <b>Note:</b> This does not affect team members
+     *
+     * @return true, if users are allowed to enter this region
+     * @see #setAllowEnter(boolean)
+     */
     boolean isAllowedToEnter();
 
     /**
@@ -86,5 +102,11 @@ public interface Region {
     @Nullable
     Residence getResidence();
 
-    void update(List<Area> included, List<Area> excluded);
+    /**
+     * Updates the areas of this region.
+     *
+     * @param included the areas that make up the region
+     * @param excluded the areas explicitly excluded from the region
+     */
+    void update(@Nonnull List<Area> included, @Nonnull List<Area> excluded);
 }

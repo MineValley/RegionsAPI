@@ -28,14 +28,33 @@ public class NaturalEnvironmentModificationEvent extends Event {
         this.overwrite = nativelyInterrupted;
     }
 
+    /**
+     * Allows this event to be executed. This even overrides the internal regions decision.
+     * <p>
+     * <b>Note:</b> Other listeners might change the state of allowance after yours changing it.
+     */
     public void allow() {
         overwrite = true;
     }
 
+    /**
+     * Prevents this event from being executed. This even overrides the internal regions decision.
+     * <p>
+     * <b>Note:</b> Other listeners might change the state of allowance after yours changing it.
+     */
     public void deny() {
         overwrite = false;
     }
 
+    /**
+     * Gets whether this event will be executed
+     * <p>
+     * <b>Note:</b> Other listeners might change the state of allowance after yours checking it.
+     *
+     * @return true, if the event will be executed
+     * @see #allow()
+     * @see #deny()
+     */
     public boolean isFinallyAllowed() {
         return overwrite;
     }

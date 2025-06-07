@@ -3,6 +3,9 @@ package minevalley.regions.api.residences;
 import minevalley.core.api.mail.Parcel;
 import minevalley.core.api.users.OnlineUser;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public interface Mailbox {
 
@@ -13,16 +16,17 @@ public interface Mailbox {
      * Since this is a copy of the original list, changes on the array don't have any influence on ingame actions.
      * use the add(), clear() and remove() methods.
      *
-     * @return array of the parcels in this mailbox
+     * @return list of the parcels in this mailbox
      */
-    Parcel[] getContents();
+    @Nonnull
+    List<Parcel> getContents();
 
     /**
      * Adds a parcel to this mailbox. It's itemstack will be added to the getContents-array.
      *
      * @param parcel parcel to add to this mailbox.
      */
-    void add(Parcel parcel);
+    void add(@Nonnull Parcel parcel);
 
     /**
      * Removes a specific parcel from the mailbox content list.
@@ -30,7 +34,7 @@ public interface Mailbox {
      * @param parcel to delete
      * @param user   target of the parcel
      */
-    void remove(Parcel parcel, OnlineUser user);
+    void remove(@Nonnull Parcel parcel, @Nonnull OnlineUser user);
 
     /**
      * This clears the whole contents list. Regardless of the previous content, the mailbox is now empty.

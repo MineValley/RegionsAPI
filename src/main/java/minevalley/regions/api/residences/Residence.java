@@ -1,16 +1,17 @@
 package minevalley.regions.api.residences;
 
-import lombok.NonNull;
 import minevalley.core.api.Registrant;
-import minevalley.core.api.economy.BankAccount;
 import minevalley.core.api.users.User;
 import minevalley.regions.api.core.PlayerLocation;
 import minevalley.regions.api.core.Region;
 import minevalley.regions.api.structures.Street;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.jetbrains.annotations.Contract;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.time.DayOfWeek;
 import java.util.List;
 
@@ -42,6 +43,8 @@ public interface Residence extends PlayerLocation, Address {
      *
      * @return region this residence consists of.
      */
+    @Nonnull
+    @Contract(pure = true)
     Region getRegion();
 
     /**
@@ -55,6 +58,8 @@ public interface Residence extends PlayerLocation, Address {
      *
      * @return this residences' mailbox.
      */
+    @Nonnull
+    @Contract(pure = true)
     Mailbox getMailbox();
 
     /**
@@ -65,18 +70,20 @@ public interface Residence extends PlayerLocation, Address {
      *
      * @return this residences' sign.
      */
+    @Nonnull
+    @Contract(pure = true)
     ResidenceSign getSign();
-
-    void setSign(Block block);
 
     /**
      * Every residence has a specific location. When creating new plots or apartments, the teamer has to define this location.
-     * It is used for teamlers to teleport to a specific residence and is used as navigation target,
+     * It is used for team members to teleport to a specific residence and is used as navigation target,
      * whenever a user tries to navigate to this residence.
      * In case this residence is an apartment created by a player, this location is set to the location of the ResidenceSign.
      *
      * @return this residences' location to be teleported to if needed.
      */
+    @Nonnull
+    @Contract(pure = true)
     Location getLocation();
 
     /**
@@ -86,30 +93,38 @@ public interface Residence extends PlayerLocation, Address {
      *
      * @return this residences' street.
      */
+    @Nonnull
+    @Contract(pure = true)
     Street getStreet();
 
+    @Nonnull
+    @Contract(pure = true)
     String getAddressShortcut();
 
     /**
      * The owner has full permission over his residence. The ownership only changes if the residence is sold or transmitted.
-     * <br>
+     * <p>
      * <b>Note:</b> The owner of an apartment is its renter! To get the landlord, use the apartment-object and check for its landlord.
      * The result of getOwner() might be null! This is only the case, if the residence is for sale / for rent.
      * Plots for sale keep their owner until they are bought. To check, whether a plot is for sale, check the getSale()-method.
      *
      * @return residence owner.
      */
+    @Nonnull
+    @Contract(pure = true)
     Registrant getOwner();
 
     /**
      * Permissioned users are allowed to build and have access to locked chests (and other locked blocks) if they are set up this way.
      * The list of permissioned users can be edited by the owner or the admins of this residence.
-     * <br>
+     * <p>
      * <b>Note:</b> This method only gives a copy of the original list. use the grantPermission and revokePermission method to adjust the contents.
      * Future changes won't be added to this list.
      *
      * @return list of all permissioned registrants.
      */
+    @Nonnull
+    @Contract(pure = true)
     List<Registrant> getPermissioned();
 
     /**
@@ -123,13 +138,15 @@ public interface Residence extends PlayerLocation, Address {
      * <br>
      * They are allowed to add / remove users as permissioned users.
      * The list of admins users can only be edited by the owner of this residence.
-     * <br>
+     * <p>
      * <b>Note:</b> This method only gives a copy of the original list. use the grantAdminPermission and
      * revokeAdminPermission method to adjust the contents.
      * Future changes won't be added to this list.
      *
      * @return list of all admins.
      */
+    @Nonnull
+    @Contract(pure = true)
     List<Registrant> getAdmins();
 
     /**
@@ -141,7 +158,8 @@ public interface Residence extends PlayerLocation, Address {
      * @param user user to check
      * @return true, if user is permissioned.
      */
-    boolean isPermissioned(User user);
+    @Contract(value = "null -> false", pure = true)
+    boolean isPermissioned(@Nullable User user);
 
     /**
      * Checks whether a user is part of the admin-users list.
@@ -152,45 +170,41 @@ public interface Residence extends PlayerLocation, Address {
      * @param user user to check
      * @return true, if user is admin on this residence.
      */
-    boolean isAdmin(User user);
+    @Contract(value = "null -> false", pure = true)
+    boolean isAdmin(@Nullable User user);
 
     /**
      * Adds a registrant to the permissioned list.
      *
-     * @param registrant registrant to grant permission.
+     * @param registrant registrant to grant permission
+     * @throws IllegalArgumentException if the registrant is null, admin or owner
      */
-    void grantPermission(Registrant registrant);
+    @Contract(pure = true)
+    void grantPermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
 
     /**
      * Adds a registrant to the admin list.
      *
      * @param registrant registrant to grant admin permission.
+     * @throws IllegalArgumentException if the registrant is null, already admin/owner
      */
-    void grantAdminPermission(Registrant registrant);
+    void grantAdminPermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
 
     /**
      * Removes a registrant from the permissioned list.
      *
      * @param registrant registrant to revoke permission from
+     * @throws IllegalArgumentException if the registrant is null, or owner/admin
      */
-    void revokePermission(Registrant registrant);
+    void revokePermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
 
     /**
      * Removes a registrant from the admin list.
      *
      * @param registrant registrant to revoke permission from
+     * @throws IllegalArgumentException if the registrant is null, or owner
      */
-    void revokeAdminPermission(Registrant registrant);
-
-    /**
-     * Transmits this residence to another owner. This method should never be called to sell/rent the residence.
-     * It only changes the given parameters. No money is transferred. This plots worth remains unchanged.
-     *
-     * @param user       the given user will be marked as the responsible in a letter, that is sent to the transmitted plot.
-     * @param registrant new owner
-     * @param account    bank account of new owner to withdraw taxes from
-     */
-    void transmit(User user, @Nonnull Registrant registrant, @Nonnull BankAccount account);
+    void revokeAdminPermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
 
     /**
      * Residences can be locked by a teamler or by the system.
@@ -224,11 +238,12 @@ public interface Residence extends PlayerLocation, Address {
 
     /**
      * Checks whether the given block is part of this residence region.
-     * <br>
+     * <p>
      * <b>Note:</b> If this residence is a plot which is part of a PlotMerge, the other plots are ignored.
      * Use the contains()-method of the PlotMerge object instead to check for all merged plots!
      */
-    boolean contains(Block block);
+    @Contract(value = "null -> false", pure = true)
+    boolean contains(@Nullable Block block);
 
     /**
      * Checks whether the given location is part of this residence region.
@@ -239,7 +254,8 @@ public interface Residence extends PlayerLocation, Address {
      * @param location location to check
      * @return true, if location is contained in this residence.
      */
-    boolean contains(Location location);
+    @Contract(value = "null -> false", pure = true)
+    boolean contains(@Nullable Location location);
 
     /**
      * If the building of this residence does not meet the building regulations, a team member can issue a warning.
@@ -247,27 +263,36 @@ public interface Residence extends PlayerLocation, Address {
      *
      * @return warning, if existing.
      */
+    @Nullable
+    @Contract(pure = true)
     Warning getWarning();
 
     /**
-     * Adds a new warning. If there already is a warning, this method will do nothing!
+     * Adds a new warning.
      *
      * @param notice notice to add to this residence.
+     * @throws IllegalArgumentException if the notice is null
+     * @throws IllegalStateException    if there is already a warning
      */
-    void addWarning(Warning notice);
+    void addWarning(@Nonnull Warning notice) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Removes the current warning.
+     *
+     * @throws IllegalStateException if there is no warning to remove
      */
-    void removeWarning();
+    void removeWarning() throws IllegalStateException;
 
     /**
      * Resets the residence to its original state.
      *
      * @param teamler can be null, if this is issued by the system.
      */
-    void resetByTeamler(User teamler);
+    void resetByTeamler(@Nullable User teamler);
 
+    /**
+     * Resets the residence to its original state.
+     */
     default void reset() {
         resetByTeamler(null);
     }
@@ -278,21 +303,26 @@ public interface Residence extends PlayerLocation, Address {
      * there is no need to regulate the amount of times, this method is used.
      * Electricity costs are updated to the database hourly and can be set to zero, if they get paid.
      *
-     * @param cost the costs have to be a positive number. Negative numbers will be ignored!
+     * @param costsInCents costs to add in cents
+     * @throws IllegalArgumentException if costsInCents is negative
      */
-    void addElectricityCost(double cost);
+    void addElectricityCost(int costsInCents) throws IllegalArgumentException;
 
     /**
      * Gets the electricity costs that are summed up since the latest bill.
-     * <br>
-     * <b>Note:</b> This will be replaced by an integer in the future!
      *
-     * @return electricityCosts as integer.
+     * @return electricityCosts in cents.
      */
-    double getElectricityCosts();
+    @Contract(pure = true)
+    @Nonnegative
+    int getElectricityCostsInCents();
 
-    void sendElectricityBill();
-
+    /**
+     * The electricity bill is paid weekly. The owner of a residence is able to choose that day freely.
+     *
+     * @return day of week on which the electricity bill is sent to the owner.
+     */
+    @Contract(pure = true)
     DayOfWeek getElectricityPayDay();
 
     /**
@@ -300,12 +330,9 @@ public interface Residence extends PlayerLocation, Address {
      * Apartments that are created by users always get the fertility of the plot they lie on.
      * If a user-created apartment lies on two plots with different fertility, the lower fertility is used.
      *
-     * @return fertility as integer.
+     * @return fertility as float between 0-1.
      */
-    int getFertility();
-
-    // setup-method
-    void setFertility(int fertility);
+    float getFertility();
 
     /**
      * If there is a termination for a residence, the renter (apartment) oder owner (plot) has to leave the residence.
@@ -315,29 +342,29 @@ public interface Residence extends PlayerLocation, Address {
      * <br>
      * If the owner of an apartment decides to move out, there is no delay in the termination.
      *
-     * @return array of the terminations that are associated with this residence.
+     * @return list of the terminations that are associated with this residence.
      */
-    Termination[] getTerminations();
+    @Nonnull
+    @Contract(pure = true)
+    List<Termination> getTerminations();
 
     /**
      * Adds a termination. This can be used by a team member or the landlord of an apartment.
      *
      * @param termination termination to add to this residences termination list.
      */
-    void terminate(@NonNull Termination termination);
+    void terminate(@Nonnull Termination termination);
 
     /**
      * Removes a termination.
      *
      * @param termination termination to remove.
+     * @throws IllegalArgumentException if the termination is null or not set to this residence
      */
-    void removeTermination(Termination termination);
+    void removeTermination(@Nonnull Termination termination) throws IllegalArgumentException;
 
     /**
      * Removes all existing terminations.
      */
     void removeAllTerminations();
-
-    // setup-method
-    void remove();
 }

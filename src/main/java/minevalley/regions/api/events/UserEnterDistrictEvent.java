@@ -14,6 +14,9 @@ import javax.annotation.Nonnull;
 @SuppressWarnings("unused")
 public class UserEnterDistrictEvent extends OnlineUserEvent {
 
+    /**
+     * District the user enters.
+     */
     private final District district;
 
     public UserEnterDistrictEvent(@Nonnull OnlineUser user, @Nonnull District district) {

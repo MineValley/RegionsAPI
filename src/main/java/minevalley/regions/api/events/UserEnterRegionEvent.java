@@ -17,6 +17,10 @@ public class UserEnterRegionEvent extends OnlineUserEvent implements Cancellable
 
     @Setter
     private boolean cancelled = false;
+
+    /**
+     * Region this user enters
+     */
     private final Region region;
 
     public UserEnterRegionEvent(@Nonnull OnlineUser user, @Nonnull Region region) {
