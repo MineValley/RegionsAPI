@@ -79,15 +79,18 @@
 
     <repositories>
         <repository>
+            <id>paper-mc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <repository>
             <id>github</id>
             <url>https://maven.pkg.github.com/MineValley/CoreAPI</url>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-        </repository>
-        <repository>
-            <id>paper-mc</id>
-            <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
     </repositories>
 
