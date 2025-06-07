@@ -97,7 +97,6 @@
             <groupId>minevalley.core</groupId>
             <artifactId>api</artifactId>
             <version>${core-api.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <!-- Paper -->
