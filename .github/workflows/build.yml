@@ -37,6 +37,8 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B clean package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to GitHub Packages # Repository is set in pom.xml
         run: mvn deploy
