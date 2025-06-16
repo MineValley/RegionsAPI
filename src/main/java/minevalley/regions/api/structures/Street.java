@@ -2,7 +2,7 @@ package minevalley.regions.api.structures;
 
 
 import lombok.Setter;
-import minevalley.core.api.regions.utils.PlayerLocation;
+import minevalley.core.api.localization.PlayerLocation;
 import org.bukkit.Location;
 import org.jetbrains.annotations.Contract;
 
