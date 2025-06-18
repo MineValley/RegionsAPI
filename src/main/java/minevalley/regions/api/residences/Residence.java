@@ -36,14 +36,6 @@ public interface Residence extends PlayerLocation, Address {
     int getId();
 
     /**
-     * Each residence has a worth factor which is used to determine its selling price and the taxes the owner has to pay frequently.
-     *
-     * @return the residences worth factor
-     */
-    @Contract(pure = true)
-    float getWorthFactor();
-
-    /**
      * Every Residence is associated with a region. This region defines the habitat in which the user is allowed to build.
      * <br>
      * <b>Note:</b> Since Residences can be plots that are merged to other ones, keep in mind that there might be other
@@ -316,6 +308,7 @@ public interface Residence extends PlayerLocation, Address {
      * @return day of week on which the electricity bill is sent to the owner.
      */
     @Contract(pure = true)
+    @Nonnull
     DayOfWeek getElectricityPayDay();
 
     /**
@@ -326,6 +319,7 @@ public interface Residence extends PlayerLocation, Address {
      * @return fertility as float between 0-1.
      */
     @Contract(pure = true)
+    @Nonnegative
     float getFertility();
 
     /**
@@ -346,16 +340,18 @@ public interface Residence extends PlayerLocation, Address {
      * Adds a termination. This can be used by a team member or the landlord of an apartment.
      *
      * @param termination termination to add to this residences termination list.
+     * @throws IllegalArgumentException if the termination is null
      */
-    void terminate(@Nonnull Termination termination);
+    void terminate(@Nonnull Termination termination) throws IllegalArgumentException;
 
     /**
      * Removes a termination.
      *
      * @param termination termination to remove.
-     * @throws IllegalArgumentException if the termination is null or not set to this residence
+     * @throws IllegalArgumentException if the termination is null
+     * @throws IllegalStateException    if the termination is not set to this residence
      */
-    void removeTermination(@Nonnull Termination termination) throws IllegalArgumentException;
+    void removeTermination(@Nonnull Termination termination) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Removes all existing terminations.
