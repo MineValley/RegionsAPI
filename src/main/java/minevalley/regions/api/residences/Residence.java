@@ -32,6 +32,7 @@ public interface Residence extends PlayerLocation, Address {
      *
      * @return this residences' id as integer.
      */
+    @Contract(pure = true)
     int getId();
 
     /**
@@ -39,6 +40,7 @@ public interface Residence extends PlayerLocation, Address {
      *
      * @return the residences worth factor
      */
+    @Contract(pure = true)
     float getWorthFactor();
 
     /**
@@ -212,11 +214,12 @@ public interface Residence extends PlayerLocation, Address {
      *
      * @return true, if this residence is locked.
      */
+    @Contract(pure = true)
     boolean isLocked();
 
     /**
      * Locks this residence.
-     * <br>
+     * <p>
      * <b>Note:</b> The option to lock a residence should never be granted to any user and should only be used for administrative purposes.
      */
     void lock();
@@ -322,6 +325,7 @@ public interface Residence extends PlayerLocation, Address {
      *
      * @return fertility as float between 0-1.
      */
+    @Contract(pure = true)
     float getFertility();
 
     /**
