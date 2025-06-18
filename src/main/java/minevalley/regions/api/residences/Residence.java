@@ -34,6 +34,11 @@ public interface Residence extends PlayerLocation, Address {
      */
     int getId();
 
+    /**
+     * Each residence has a worth factor which is used to determine its selling price and the taxes the owner has to pay frequently.
+     *
+     * @return the residences worth factor
+     */
     float getWorthFactor();
 
     /**
@@ -86,7 +91,7 @@ public interface Residence extends PlayerLocation, Address {
      */
     @Nonnull
     @Contract(pure = true)
-    Location getLocation();
+    Location getAnchor();
 
     /**
      * Every Residence has a Street. If this residence is a player-created apartment,
