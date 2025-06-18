@@ -25,6 +25,14 @@ public interface Plot extends Residence {
     }
 
     /**
+     * Each plot has a worth factor which is used to determine its selling price and the taxes the owner has to pay frequently.
+     *
+     * @return the plots worth factor
+     */
+    @Contract(pure = true)
+    float getWorthFactor();
+
+    /**
      * The PlotMerge defines the way this plot is merged with other plots.
      *
      * @return this plots merge.
