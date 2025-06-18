@@ -175,37 +175,20 @@ public interface Residence extends PlayerLocation, Address {
     boolean isAdmin(@Nullable User user);
 
     /**
-     * Adds a registrant to the permissioned list.
+     * Sets a permission to a registrant.
+     * <p>
+     * <b>Note:</b>
+     * <ul>
+     *     <li>If the registrant already has permission, it will be overwritten!</li>
+     *     <li>If someone is granted owner permission, the other owner loses their permission and is demoted to administrator.</li>
+     * </ul>
      *
-     * @param registrant registrant to grant permission
-     * @throws IllegalArgumentException if the registrant is null, admin or owner
+     * @param registrant registrant to set its permission
+     * @param permission permission to set
+     * @throws IllegalArgumentException if the registrant is null
+     * @throws IllegalStateException    if the registrant is the residences owner
      */
-    @Contract(pure = true)
-    void grantPermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
-
-    /**
-     * Adds a registrant to the admin list.
-     *
-     * @param registrant registrant to grant admin permission.
-     * @throws IllegalArgumentException if the registrant is null, already admin/owner
-     */
-    void grantAdminPermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
-
-    /**
-     * Removes a registrant from the permissioned list.
-     *
-     * @param registrant registrant to revoke permission from
-     * @throws IllegalArgumentException if the registrant is null, or owner/admin
-     */
-    void revokePermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
-
-    /**
-     * Removes a registrant from the admin list.
-     *
-     * @param registrant registrant to revoke permission from
-     * @throws IllegalArgumentException if the registrant is null, or owner
-     */
-    void revokeAdminPermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
+    void setPermission(@Nonnull Registrant registrant, @Nullable Permission permission) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Residences can be locked by a teamler or by the system.
@@ -248,7 +231,7 @@ public interface Residence extends PlayerLocation, Address {
 
     /**
      * Checks whether the given location is part of this residence region.
-     * <br>
+     * <p>
      * <b>Note:</b> If this residence is a plot which is part of a PlotMerge, the other plots are ignored.
      * Use the contains()-method of the PlotMerge object instead to check for all merged plots!
      *
@@ -271,11 +254,11 @@ public interface Residence extends PlayerLocation, Address {
     /**
      * Adds a new warning.
      *
-     * @param notice notice to add to this residence.
-     * @throws IllegalArgumentException if the notice is null
+     * @param warning warning to add to this residence.
+     * @throws IllegalArgumentException if the warning is null
      * @throws IllegalStateException    if there is already a warning
      */
-    void addWarning(@Nonnull Warning notice) throws IllegalArgumentException, IllegalStateException;
+    void addWarning(@Nonnull Warning warning) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Removes the current warning.
@@ -307,7 +290,7 @@ public interface Residence extends PlayerLocation, Address {
      * @param costsInCents costs to add in cents
      * @throws IllegalArgumentException if costsInCents is negative
      */
-    void addElectricityCost(int costsInCents) throws IllegalArgumentException;
+    void addElectricityCost(@Nonnegative int costsInCents) throws IllegalArgumentException;
 
     /**
      * Gets the electricity costs that are summed up since the latest bill.
@@ -368,4 +351,10 @@ public interface Residence extends PlayerLocation, Address {
      * Removes all existing terminations.
      */
     void removeAllTerminations();
+
+    enum Permission {
+        PERMISSIONED,
+        ADMINISTRATOR,
+        OWNER
+    }
 }
