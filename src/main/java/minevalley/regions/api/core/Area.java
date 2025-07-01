@@ -2,6 +2,7 @@ package minevalley.regions.api.core;
 
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.jetbrains.annotations.Contract;
 
@@ -13,13 +14,22 @@ import java.util.List;
 public interface Area {
 
     /**
+     * Gets the world, this area lies in.
+     *
+     * @return world this area lies in
+     */
+    @Nonnull
+    @Contract(pure = true)
+    World world();
+
+    /**
      * Gets the block with the smallest x, y, and z coordinates that is still contained within the area.
      *
      * @return the block with the smallest x, y, and z coordinates in the area
      */
     @Nonnull
     @Contract(pure = true)
-    Block getMinBlock();
+    Block minBlock();
 
     /**
      * Gets the block with the highest x, y, and z coordinates that is still contained within the area.
@@ -28,7 +38,7 @@ public interface Area {
      */
     @Nonnull
     @Contract(pure = true)
-    Block getMaxBlock();
+    Block maxBlock();
 
     /**
      * Gets a list of all the blocks contained by this area.
