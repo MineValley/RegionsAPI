@@ -21,7 +21,7 @@ public interface Plot extends Residence {
     @Override
     @Contract(pure = true)
     default String getAddressShortcut() {
-        return getStreet().getShortName() + getHouseNumber();
+        return getStreet().name() + " " + getHouseNumber();
     }
 
     /**

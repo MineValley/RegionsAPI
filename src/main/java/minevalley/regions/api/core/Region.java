@@ -1,13 +1,10 @@
 package minevalley.regions.api.core;
 
 import minevalley.core.api.users.OnlineUser;
-import minevalley.regions.api.residences.Residence;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 
-import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -19,8 +16,7 @@ public interface Region {
      *
      * @return id as integer
      */
-    @Nonnegative
-    int getId();
+    int id();
 
     /**
      * Gets a list of the areas that are included in the region.
@@ -28,7 +24,7 @@ public interface Region {
      * @return list of included areas
      */
     @Nonnull
-    List<Area> getIncluded();
+    List<Area> included();
 
     /**
      * Gets a list of the areas that are excluded by the region.
@@ -36,7 +32,7 @@ public interface Region {
      * @return list of excluded areas
      */
     @Nonnull
-    List<Area> getExcluded();
+    List<Area> excluded();
 
     /**
      * Gets a list with the chunks that this region lies in.
@@ -44,7 +40,7 @@ public interface Region {
      * @return list of chunks this region lies in
      */
     @Nonnull
-    List<Chunk> getChunks();
+    List<Chunk> chunks();
 
     /**
      * Gets a stream of all the users that are currently in the region.
@@ -76,37 +72,11 @@ public interface Region {
     }
 
     /**
-     * Sets whether users are allowed to enter this region.
-     * <p>
-     * <b>Note:</b> This does not affect team members
-     *
-     * @param allow whether users may enter this region
-     */
-    void setAllowEnter(boolean allow);
-
-    /**
-     * Gets whether users are allowed to enter this region.
-     * <p>
-     * <b>Note:</b> This does not affect team members
-     *
-     * @return true, if users are allowed to enter this region
-     * @see #setAllowEnter(boolean)
-     */
-    boolean isAllowedToEnter();
-
-    /**
-     * Gets the residence this region is used as, if existing.
-     *
-     * @return the residence this region is used as, if existing.
-     */
-    @Nullable
-    Residence getResidence();
-
-    /**
      * Updates the areas of this region.
      *
      * @param included the areas that make up the region
      * @param excluded the areas explicitly excluded from the region
+     * @throws IllegalArgumentException if included or excluded is null, or included is empty
      */
-    void update(@Nonnull List<Area> included, @Nonnull List<Area> excluded);
+    void update(@Nonnull List<Area> included, @Nonnull List<Area> excluded) throws IllegalArgumentException;
 }

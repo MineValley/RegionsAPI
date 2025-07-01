@@ -18,7 +18,7 @@ public interface District extends PlayerLocation {
      * @return id as integer
      */
     @Contract(pure = true)
-    int getId();
+    int id();
 
     /**
      * Gets a stream of all the chunks that make up this district.
@@ -27,7 +27,7 @@ public interface District extends PlayerLocation {
      */
     @Nonnull
     @Contract(pure = true)
-    Stream<Chunk> getChunks();
+    Stream<Chunk> chunks();
 
     /**
      * Gets the description of this district.
@@ -36,7 +36,7 @@ public interface District extends PlayerLocation {
      */
     @Nullable
     @Contract(pure = true)
-    String getDescription();
+    String description();
 
     /**
      * Gets all users inside the district.

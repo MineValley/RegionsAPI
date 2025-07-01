@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -18,38 +19,28 @@ public interface Street {
      *
      * @return id as integer.
      */
-    int getId();
+    int id();
 
     /**
      * Gets this streets name.
      * <p>
-     * <b>Note:</b> Don't use it to refer to the street. Names might change in the future. Use getId instead!
+     * <b>Note:</b> Don't use it to refer to the street. Names might change in the future. Use {@link #id()} instead!
      *
      * @return name as string.
-     * @see #getId()
-     * @see #getShortName()
+     * @see #id()
      */
     @Nonnull
     @Contract(pure = true)
-    String getName();
-
-    /**
-     * Gets this street's name in a shortened form (Friedrichstraße -> Friedrichstr.)
-     *
-     * @return shortened street name
-     */
-    @Nonnull
-    @Contract(pure = true)
-    String getShortName();
+    String name();
 
     /**
      * Gets the description of this street. Not every street does have a description. If the street doesn't have a description, this is null.
      *
      * @return description as string
      */
-    @Nonnull
+    @Nullable
     @Contract(pure = true)
-    String getDescription();
+    String description();
 
     @Setter
     class StreetHelper {

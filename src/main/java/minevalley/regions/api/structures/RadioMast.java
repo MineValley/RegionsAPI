@@ -18,7 +18,7 @@ public interface RadioMast {
      */
     @Nonnull
     @Contract(pure = true)
-    String getName();
+    String name();
 
     /**
      * Gets this radio mast's location.
@@ -27,7 +27,7 @@ public interface RadioMast {
      */
     @Nonnull
     @Contract(pure = true)
-    Location getLocation();
+    Location location();
 
     /**
      * Calculates the distance between a given location and this radio mast.
