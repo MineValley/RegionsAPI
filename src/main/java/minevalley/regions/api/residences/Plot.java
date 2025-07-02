@@ -1,5 +1,7 @@
 package minevalley.regions.api.residences;
 
+import minevalley.core.api.Registrant;
+import minevalley.regions.api.structures.Street;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnegative;
@@ -9,28 +11,50 @@ import javax.annotation.Nonnull;
 public interface Plot extends Residence {
 
     /**
+     * Gets the street on which the plot is located.
+     *
+     * @return street on which the plot is located
+     */
+    @Nonnull
+    @Contract(pure = true)
+    Street street();
+
+    /**
      * Gets the house number of this plot
      *
      * @return house number as non-negative integer.
      */
     @Nonnegative
     @Contract(pure = true)
-    int getHouseNumber();
+    int houseNumber();
 
+    /**
+     * Gets the owner of this plot.
+     * <p>
+     * Plots for sale keep their owner until they are bought. To check, whether a plot is for sale, check the getSale()-method.
+     *
+     * @return plot owner.
+     */
     @Nonnull
-    @Override
     @Contract(pure = true)
-    default String getAddressShortcut() {
-        return getStreet().name() + " " + getHouseNumber();
-    }
+    Registrant getOwner();
+
+    /**
+     * Gets the amount of money, this plot is for sale.
+     * If the plot is not for sale, this is -1.
+     *
+     * @return this plots sale, or -1
+     */
+    @Contract(pure = true)
+    int getSale();
 
     /**
      * Each plot has a worth factor which is used to determine its selling price and the taxes the owner has to pay frequently.
      *
-     * @return the plots worth factor
+     * @return the plots worth factor (0-1)
      */
     @Contract(pure = true)
-    float getWorthFactor();
+    float worthFactor();
 
     /**
      * The PlotMerge defines the way this plot is merged with other plots.
@@ -39,5 +63,5 @@ public interface Plot extends Residence {
      */
     @Nonnull
     @Contract(pure = true)
-    PlotMerge getPlotMerge();
+    PlotMerge plotMerge();
 }

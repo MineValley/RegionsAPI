@@ -64,18 +64,6 @@ public interface Residence extends PlayerLocation, Address {
     Mailbox getMailbox();
 
     /**
-     * The ResidenceSign displays important information about the residence. It is also used to take actions on it.
-     * It is placed outside the residence. Players use it to take actions, sell or buy the resident.
-     * Every Resident has a sign, but merged plots unplace their sign and use the residence sign of the main plot.
-     * When unmerging a plot, the original residence sign is replaced.
-     *
-     * @return this residences' sign.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    ResidenceSign getSign();
-
-    /**
      * Every residence has a specific location. When creating new plots or apartments, the teamer has to define this location.
      * It is used for team members to teleport to a specific residence and is used as navigation target,
      * whenever a user tries to navigate to this residence.
@@ -97,23 +85,6 @@ public interface Residence extends PlayerLocation, Address {
     @Nonnull
     @Contract(pure = true)
     Street getStreet();
-
-    @Nonnull
-    @Contract(pure = true)
-    String getAddressShortcut();
-
-    /**
-     * The owner has full permission over his residence. The ownership only changes if the residence is sold or transmitted.
-     * <p>
-     * <b>Note:</b> The owner of an apartment is its renter! To get the landlord, use the apartment-object and check for its landlord.
-     * The result of getOwner() might be null! This is only the case, if the residence is for sale / for rent.
-     * Plots for sale keep their owner until they are bought. To check, whether a plot is for sale, check the getSale()-method.
-     *
-     * @return residence owner.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    Registrant getOwner();
 
     /**
      * Permissioned users are allowed to build and have access to locked chests (and other locked blocks) if they are set up this way.
