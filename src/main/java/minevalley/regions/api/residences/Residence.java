@@ -49,21 +49,6 @@ public interface Residence extends PlayerLocation, Address {
     Region getRegion();
 
     /**
-     * Residences have to have a mailbox specified, to be rented by a player. Whenever a user tries to add a new apartment
-     * he is asked to add a mailbox. If he doesn't add one, he should not be able to open the apartment for anyone to rent.
-     * He might still use the apartment for personal purpose but is not able to define a rent nor search for renters.
-     * <br>
-     * If a plot gets merged with another one, its mailbox will get unplaced by the system. In this case, all contents are
-     * directly delivered to the mailbox of the main plot (without time delay). Every plot merge does have a mailbox on
-     * its main plot. If there is mail added to an unplaced mailbox, the system redirects the mail automatically to its new destination (main plot).
-     *
-     * @return this residences' mailbox.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    Mailbox getMailbox();
-
-    /**
      * Every residence has a specific location. When creating new plots or apartments, the teamer has to define this location.
      * It is used for team members to teleport to a specific residence and is used as navigation target,
      * whenever a user tries to navigate to this residence.
