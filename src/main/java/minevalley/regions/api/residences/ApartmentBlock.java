@@ -74,15 +74,6 @@ public interface ApartmentBlock {
     List<Apartment> getApartments(int floor) throws IllegalArgumentException;
 
     /**
-     * Gets this apartment block's mailbox
-     *
-     * @return mailbox as block
-     */
-    @Nonnull
-    @Contract(pure = true)
-    Mailbox getMailbox();
-
-    /**
      * Gets the amount of floors in this apartment block.
      * <p>
      * <b>Note:</b> The lowest floor is always 0. If there are basement floors, the index of the first floor can be above 0

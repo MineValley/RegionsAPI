@@ -1,5 +1,6 @@
 package minevalley.regions.api.residences;
 
+import minevalley.core.api.Registrant;
 import minevalley.core.api.corporations.RealEstateGroup;
 import minevalley.core.api.economy.BankAccount;
 import org.jetbrains.annotations.Contract;
@@ -12,13 +13,52 @@ import javax.annotation.Nullable;
 public interface Apartment extends Residence {
 
     /**
-     * Every apartment has a number. These numbers are meant to distinguish the apartment from the others of the same apartment block.
-     * Apartment numbers are assigned incrementally and are non-unique other the scope of an apartment block!
-     * To distinguish this apartment from others, use region ids!
+     * Gets the landlord of this apartment.
+     * The landlord might be a state-company.
      *
-     * @return number of this apartment
+     * @return landlord as {@link RealEstateGroup}
      */
-    int getApartmentNumber();
+    @Nonnull
+    @Contract(pure = true)
+    RealEstateGroup getLandlord();
+
+    /**
+     * Gets the bank account that is selected by the landlord.
+     * This bank account is used for all apartment-related expenses not covered by the renter and receives all rent payments.
+     * This bankaccount might not be the primary bank account of the landlord, but must be in his possession
+     *
+     * @return landlord's bank account.
+     */
+    @Nonnull
+    @Contract(pure = true)
+    BankAccount getLandLordBankAccount();
+
+    /**
+     * Gets the registrant that rents this apartment. This is null, when the apartment is not rented.
+     *
+     * @return renter
+     */
+    @Nullable
+    @Contract(pure = true)
+    Registrant getRenter();
+
+    /**
+     * Gets the bank account that is selected by the renter for paying their rent. This is null, if the apartment is not rented.
+     *
+     * @return renter's bank account to pay their rent.
+     */
+    @Nullable
+    @Contract(pure = true)
+    BankAccount getRenterBankAccount();
+
+    /**
+     * Gets this apartment's rent
+     *
+     * @return rent as positive integer
+     */
+    @Nonnegative
+    @Contract(pure = true)
+    int getRent();
 
     /**
      * Gets whether this apartment is only rentable by premium users.
@@ -36,68 +76,16 @@ public interface Apartment extends Residence {
     boolean isPremiumOnly();
 
     /**
-     * Gets the landlord of this apartment.
-     * The landlord might be a state-company.
+     * Gets the residence this apartment belongs to, if it does.
+     * <ul>
+     *     <li>This might be an apartment block this apartment belongs to</li>
+     *     <li>...or a plot on which this apartment lies on</li>
+     *     <li>...or null, if the apartment is standalone</li>
+     * </ul>
      *
-     * @return landlord as {@link RealEstateGroup}
-     */
-    @Nonnull
-    RealEstateGroup getLandlord();
-
-    /**
-     * Sets this apartment's landlord.
-     *
-     * @param landlord landlord to be set
-     * @throws IllegalArgumentException if the landlord is null
-     */
-    void setLandlord(@Nonnull RealEstateGroup landlord) throws IllegalArgumentException;
-
-    /**
-     * Gets the bank account that is selected by the landlord.
-     * This bank account is used for all apartment-related expenses not covered by the renter and receives all rent payments.
-     * This bankaccount might not be the primary bank account of the landlord, but must be in his possession
-     *
-     * @return landlord's bank account.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    BankAccount getLandLordBankAccount();
-
-    /**
-     * Sets the landlord's bank account.
-     * <p>
-     * <b>Note:</b> This bank account must be in the landlord's possession
-     *
-     * @param bankAccount bankAccount to set
-     * @throws IllegalArgumentException if bankAccount is null or not in the landlord's possession
-     * @see #getLandLordBankAccount()
-     */
-    void setLandlordBankAccount(@Nonnull BankAccount bankAccount) throws IllegalArgumentException;
-
-    /**
-     * Gets this apartment's rent
-     *
-     * @return rent as positive integer
-     */
-    @Nonnegative
-    @Contract(pure = true)
-    int getRent();
-
-    /**
-     * Changes the rent of this apartment.
-     * The rent must be a positive (excluding zero) value
-     *
-     * @param rent rent in euros
-     * @throws IllegalArgumentException if rent is negative or zero
-     */
-    void changeRent(@Nonnegative int rent) throws IllegalArgumentException;
-
-    /**
-     * Gets the apartment block this apartment belongs to, if it does.
-     *
-     * @return this apartments apartment block, if existing.
+     * @return residence this apartment belongs to
      */
     @Nullable
     @Contract(pure = true)
-    ApartmentBlock getApartmentBlock();
+    Residence getParentResidence();
 }

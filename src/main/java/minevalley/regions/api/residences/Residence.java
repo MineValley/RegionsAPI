@@ -49,33 +49,6 @@ public interface Residence extends PlayerLocation, Address {
     Region getRegion();
 
     /**
-     * Residences have to have a mailbox specified, to be rented by a player. Whenever a user tries to add a new apartment
-     * he is asked to add a mailbox. If he doesn't add one, he should not be able to open the apartment for anyone to rent.
-     * He might still use the apartment for personal purpose but is not able to define a rent nor search for renters.
-     * <br>
-     * If a plot gets merged with another one, its mailbox will get unplaced by the system. In this case, all contents are
-     * directly delivered to the mailbox of the main plot (without time delay). Every plot merge does have a mailbox on
-     * its main plot. If there is mail added to an unplaced mailbox, the system redirects the mail automatically to its new destination (main plot).
-     *
-     * @return this residences' mailbox.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    Mailbox getMailbox();
-
-    /**
-     * The ResidenceSign displays important information about the residence. It is also used to take actions on it.
-     * It is placed outside the residence. Players use it to take actions, sell or buy the resident.
-     * Every Resident has a sign, but merged plots unplace their sign and use the residence sign of the main plot.
-     * When unmerging a plot, the original residence sign is replaced.
-     *
-     * @return this residences' sign.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    ResidenceSign getSign();
-
-    /**
      * Every residence has a specific location. When creating new plots or apartments, the teamer has to define this location.
      * It is used for team members to teleport to a specific residence and is used as navigation target,
      * whenever a user tries to navigate to this residence.
@@ -97,23 +70,6 @@ public interface Residence extends PlayerLocation, Address {
     @Nonnull
     @Contract(pure = true)
     Street getStreet();
-
-    @Nonnull
-    @Contract(pure = true)
-    String getAddressShortcut();
-
-    /**
-     * The owner has full permission over his residence. The ownership only changes if the residence is sold or transmitted.
-     * <p>
-     * <b>Note:</b> The owner of an apartment is its renter! To get the landlord, use the apartment-object and check for its landlord.
-     * The result of getOwner() might be null! This is only the case, if the residence is for sale / for rent.
-     * Plots for sale keep their owner until they are bought. To check, whether a plot is for sale, check the getSale()-method.
-     *
-     * @return residence owner.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    Registrant getOwner();
 
     /**
      * Permissioned users are allowed to build and have access to locked chests (and other locked blocks) if they are set up this way.
