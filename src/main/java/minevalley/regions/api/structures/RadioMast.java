@@ -2,6 +2,7 @@ package minevalley.regions.api.structures;
 
 import minevalley.core.api.users.OnlineUser;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnegative;
@@ -21,13 +22,29 @@ public interface RadioMast {
     String name();
 
     /**
-     * Gets this radio mast's location.
+     * Gets the world, this radio mast lies in.
      *
-     * @return radio mast's location
+     * @return world of this radio mast
      */
     @Nonnull
     @Contract(pure = true)
-    Location location();
+    World world();
+
+    /**
+     * Gets the x coordinate of this radio mast.
+     *
+     * @return x coordinate of this radio mast
+     */
+    @Contract(pure = true)
+    int x();
+
+    /**
+     * Gets the y coordinate of this radio mast.
+     *
+     * @return y coordinate of this radio mast
+     */
+    @Contract(pure = true)
+    int y();
 
     /**
      * Gets the range of this radio mast in blocks.
