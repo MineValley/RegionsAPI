@@ -193,17 +193,6 @@ public class Regions {
     }
 
     /**
-     * Gets all loaded residences.
-     *
-     * @return list of all loaded residences
-     */
-    @Nonnull
-    @Contract(pure = true)
-    public static List<Residence> getLoadedResidences() {
-        return server.getLoadedResidences();
-    }
-
-    /**
      * Gets the apartment block with the given id, if existing.
      *
      * @param id id to get the apartment block from
