@@ -20,7 +20,6 @@ import org.jetbrains.annotations.Contract;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.stream.Stream;
 
 @ApiStatus.Internal
 public interface RegionsServer {
@@ -46,19 +45,12 @@ public interface RegionsServer {
     Residence getResidence(@Nullable Region region);
 
     @Nonnull
-    Stream<Residence> getResidences(@Nonnull Block block) throws IllegalArgumentException;
-
-    @Nonnull
     @Contract(pure = true)
     List<Residence> getResidences(@Nonnull Registrant registrant) throws IllegalArgumentException;
 
     @Nonnull
     @Contract(pure = true)
     List<Residence> getResidences();
-
-    @Nonnull
-    @Contract(pure = true)
-    List<Residence> getLoadedResidences();
 
     @Nullable
     @Contract(pure = true)
