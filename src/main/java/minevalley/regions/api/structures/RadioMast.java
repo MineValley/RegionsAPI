@@ -40,12 +40,12 @@ public interface RadioMast {
     int x();
 
     /**
-     * Gets the y coordinate of this radio mast.
+     * Gets the z coordinate of this radio mast.
      *
-     * @return y coordinate of this radio mast
+     * @return z coordinate of this radio mast
      */
     @Contract(pure = true)
-    int y();
+    int z();
 
     /**
      * Gets the range of this radio mast in blocks.
