@@ -30,10 +30,20 @@ public interface RadioMast {
     Location location();
 
     /**
+     * Gets the range of this radio mast in blocks.
+     * The range defines how far this radio mast reaches.
+     *
+     * @return range in blocks.
+     */
+    @Nonnegative
+    @Contract(pure = true)
+    int range();
+
+    /**
      * Calculates the distance between a given location and this radio mast.
      *
      * @param location location to calculate the distance to
-     * @return distance as double
+     * @return distance as integer
      * @throws IllegalArgumentException if location is null or not in the same world as this radio mast.
      */
     @Contract(pure = true)
@@ -47,12 +57,4 @@ public interface RadioMast {
     @Nonnull
     @Contract(pure = true)
     Stream<OnlineUser> getConnectedUsers();
-
-    /**
-     * The range defines how far this radio mast reaches.
-     *
-     * @return range in blocks.
-     */
-    @Nonnegative
-    int getRange();
 }
