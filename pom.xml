@@ -7,7 +7,7 @@
     <name>RegionsAPI</name>
 
     <properties>
-        <version>0.1.4</version>
+        <version>0.2.0</version>
         <core-api.version>1.294.1-regions-events-SNAPSHOT</core-api.version>
 
         <lombok.version>1.18.30</lombok.version>
