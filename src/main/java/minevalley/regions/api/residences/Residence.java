@@ -27,18 +27,18 @@ import java.util.List;
 public interface Residence extends PlayerLocation, Address {
 
     /**
-     * Each residence can be clearly identified by its ID. The Residences IDs are unique, regardless if it's a plot
-     * or an apartment. There'll be neither a plot nor an apartment with the same ID as this one. The ID won't change.
+     * Each residence can be clearly identified by its id. The Residences ids are unique and persistent, regardless if it's a plot
+     * or an apartment.
      *
-     * @return this residences' id as integer.
+     * @return the id of this residence id as integer.
      */
     @Contract(pure = true)
-    int getId();
+    int id();
 
     /**
-     * Every Residence is associated with a region. This region defines the habitat in which the user is allowed to build.
+     * Every residence is associated with a region. This region defines the habitat in which the user is allowed to build.
      * <br>
-     * <b>Note:</b> Since Residences can be plots that are merged to other ones, keep in mind that there might be other
+     * <b>Note:</b> Since residences can be plots that are merged to other ones, keep in mind that there might be other
      * residences that are merged with this one. Therefore, it might be necessary to get the merged regions and the
      * merging regions (regions between merged plots), too.
      *
@@ -46,30 +46,18 @@ public interface Residence extends PlayerLocation, Address {
      */
     @Nonnull
     @Contract(pure = true)
-    Region getRegion();
+    Region region();
 
     /**
-     * Every residence has a specific location. When creating new plots or apartments, the teamer has to define this location.
-     * It is used for team members to teleport to a specific residence and is used as navigation target,
-     * whenever a user tries to navigate to this residence.
-     * In case this residence is an apartment created by a player, this location is set to the location of the ResidenceSign.
-     *
-     * @return this residences' location to be teleported to if needed.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    Location getAnchor();
-
-    /**
-     * Every Residence has a Street. If this residence is a player-created apartment,
-     * the street is the same as the one from the plot, this apartment lies on.
+     * Every residence has a street. If this residence is a player-created apartment,
+     * the street is the same as the one of the plot, this apartment lies on.
      * If the apartment lies on a merged plot, the street will be taken from the plot merges main plot.
      *
      * @return this residences' street.
      */
     @Nonnull
     @Contract(pure = true)
-    Street getStreet();
+    Street street();
 
     /**
      * Permissioned users are allowed to build and have access to locked chests (and other locked blocks) if they are set up this way.
@@ -266,17 +254,6 @@ public interface Residence extends PlayerLocation, Address {
     @Contract(pure = true)
     @Nonnull
     DayOfWeek getElectricityPayDay();
-
-    /**
-     * The fertility of a residence defines, how fast plants can grow.
-     * Apartments that are created by users always get the fertility of the plot they lie on.
-     * If a user-created apartment lies on two plots with different fertility, the lower fertility is used.
-     *
-     * @return fertility as float between 0-1.
-     */
-    @Contract(pure = true)
-    @Nonnegative
-    float getFertility();
 
     /**
      * If there is a termination for a residence, the renter (apartment) oder owner (plot) has to leave the residence.
