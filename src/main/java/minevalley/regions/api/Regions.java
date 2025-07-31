@@ -4,10 +4,7 @@ import minevalley.core.api.Registrant;
 import minevalley.core.api.corporations.RealEstateGroup;
 import minevalley.regions.api.core.Area;
 import minevalley.regions.api.core.Region;
-import minevalley.regions.api.residences.Apartment;
-import minevalley.regions.api.residences.ApartmentBlock;
-import minevalley.regions.api.residences.Plot;
-import minevalley.regions.api.residences.Residence;
+import minevalley.regions.api.residences.*;
 import minevalley.regions.api.structures.District;
 import minevalley.regions.api.structures.RadioMast;
 import minevalley.regions.api.structures.Street;
@@ -229,6 +226,33 @@ public class Regions {
         if (block == null) return null;
         return (Plot) (getResidences(block)).filter(r -> r instanceof Plot).findAny().orElse(null);
     }
+
+    /**
+     * Gets the plot tile for the given block.
+     *
+     * @param block block to get the plot tile from
+     * @return plot tile for the given block
+     */
+    @Nullable
+    @Contract(value = "null -> null", pure = true)
+    public static PlotTile getPlotTile(@Nullable Block block) {
+        if (block == null) return null;
+        return getRegions(block).stream().map(Regions::getPlotTile).filter(Objects::nonNull).findAny().orElse(null);
+    }
+
+
+    /**
+     * Gets the plot tile for the given region.
+     *
+     * @param region region to get the plot tile from
+     * @return plot tile for the given region
+     */
+    @Nullable
+    @Contract(value = "null -> null", pure = true)
+    public static PlotTile getPlotTile(@Nullable Region region) {
+        return server.getPlotTile(region);
+    }
+
 
     /**
      * Gets the apartment with the given id, if existing.
