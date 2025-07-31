@@ -4,10 +4,7 @@ import minevalley.core.api.Registrant;
 import minevalley.core.api.corporations.RealEstateGroup;
 import minevalley.regions.api.core.Area;
 import minevalley.regions.api.core.Region;
-import minevalley.regions.api.residences.Apartment;
-import minevalley.regions.api.residences.ApartmentBlock;
-import minevalley.regions.api.residences.Plot;
-import minevalley.regions.api.residences.Residence;
+import minevalley.regions.api.residences.*;
 import minevalley.regions.api.structures.District;
 import minevalley.regions.api.structures.RadioMast;
 import minevalley.regions.api.structures.Street;
@@ -55,6 +52,10 @@ public interface RegionsServer {
     @Nullable
     @Contract(pure = true)
     Plot getPlot(int id);
+
+    @Nullable
+    @Contract(value = "null -> null", pure = true)
+    PlotTile getPlotTile(@Nullable Region region);
 
     @Nullable
     @Contract(pure = true)

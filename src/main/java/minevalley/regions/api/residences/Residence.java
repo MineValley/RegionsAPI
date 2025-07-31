@@ -19,9 +19,6 @@ import java.util.List;
 
 /**
  * The Resident contains both types of living spaces: plots and apartments.
- * <br>
- * <b>Note:</b> Plots may have been merged! Even if they are, every plot still consists of its residence.
- * When dealing with plots, always take note of merged plots.
  */
 @SuppressWarnings("unused")
 public interface Residence extends PlayerLocation, Address {
@@ -34,19 +31,6 @@ public interface Residence extends PlayerLocation, Address {
      */
     @Contract(pure = true)
     int id();
-
-    /**
-     * Every residence is associated with a region. This region defines the habitat in which the user is allowed to build.
-     * <br>
-     * <b>Note:</b> Since residences can be plots that are merged to other ones, keep in mind that there might be other
-     * residences that are merged with this one. Therefore, it might be necessary to get the merged regions and the
-     * merging regions (regions between merged plots), too.
-     *
-     * @return region this residence consists of.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    Region region();
 
     /**
      * Every residence has a street. If this residence is a player-created apartment,

@@ -3,6 +3,7 @@ package minevalley.regions.api.residences;
 import minevalley.core.api.Registrant;
 import minevalley.core.api.corporations.RealEstateGroup;
 import minevalley.core.api.economy.BankAccount;
+import minevalley.regions.api.core.Region;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnegative;
@@ -11,6 +12,15 @@ import javax.annotation.Nullable;
 
 @SuppressWarnings("unused")
 public interface Apartment extends Residence {
+
+    /**
+     * Every apartment is associated with a region. This region defines the habitat in which the user is allowed to build.
+     *
+     * @return apartment this residence consists of.
+     */
+    @Nonnull
+    @Contract(pure = true)
+    Region region();
 
     /**
      * Gets the landlord of this apartment.

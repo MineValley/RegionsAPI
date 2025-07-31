@@ -1,32 +1,42 @@
 package minevalley.regions.api.residences;
 
 import minevalley.core.api.Registrant;
-import minevalley.regions.api.structures.Street;
+import minevalley.regions.api.core.Region;
 import org.jetbrains.annotations.Contract;
 
-import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public interface Plot extends Residence {
 
     /**
-     * Gets the street on which the plot is located.
+     * Only the main tile does have a plot sign.
      *
-     * @return street on which the plot is located
+     * @return the main plot of this plot merge.
      */
     @Nonnull
     @Contract(pure = true)
-    Street street();
+    PlotTile getMainTile();
 
     /**
-     * Gets the house number of this plot
+     * All tiles that are merged in this Plot including the main tile.
      *
-     * @return house number as non-negative integer.
+     * @return list of tiles that are merged within this plot.
      */
-    @Nonnegative
+    @Nonnull
     @Contract(pure = true)
-    int houseNumber();
+    List<PlotTile> getTiles();
+
+    /**
+     * When tiles are merged, there are tiny subregions between them that need be added to the plot.
+     *
+     * @return list of all the regions that lie in between the merged tiles.
+     */
+    @Nonnull
+    @Contract(pure = true)
+    List<Region> getMergeRegions();
 
     /**
      * Gets the owner of this plot.
@@ -40,28 +50,10 @@ public interface Plot extends Residence {
     Registrant getOwner();
 
     /**
-     * Gets the amount of money, this plot is for sale.
-     * If the plot is not for sale, this is -1.
+     * Checks whether the given tile is part of this plot.
      *
-     * @return this plots sale, or -1
+     * @return true, if the tile is part of this plot, false otherwise.
      */
-    @Contract(pure = true)
-    int getSale();
-
-    /**
-     * Each plot has a worth factor which is used to determine its selling price and the taxes the owner has to pay frequently.
-     *
-     * @return the plots worth factor (0-1)
-     */
-    @Contract(pure = true)
-    float worthFactor();
-
-    /**
-     * The PlotMerge defines the way this plot is merged with other plots.
-     *
-     * @return this plots merge.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    PlotMerge plotMerge();
+    @Contract(value = "null -> false", pure = true)
+    boolean contains(@Nullable PlotTile block);
 }
