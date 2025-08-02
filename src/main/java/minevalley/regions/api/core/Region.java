@@ -3,8 +3,11 @@ package minevalley.regions.api.core;
 import minevalley.core.api.users.OnlineUser;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.block.Block;
+import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -41,6 +44,24 @@ public interface Region {
      */
     @Nonnull
     List<Chunk> chunks();
+
+    /**
+     * Checks whether the given location is inside this region.
+     *
+     * @param location location to check
+     * @return true if the location is inside the region, false otherwise
+     */
+    @Contract(value = "null -> false", pure = true)
+    boolean contains(@Nullable Location location);
+
+    /**
+     * Checks whether the given block is inside this region.
+     *
+     * @param block block to check
+     * @return true if the block is inside the region, false otherwise
+     */
+    @Contract(value = "null -> false", pure = true)
+    boolean contains(@Nullable Block block);
 
     /**
      * Gets a stream of all the users that are currently in the region.
