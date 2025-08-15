@@ -4,6 +4,7 @@ import minevalley.core.api.corporations.RealEstateGroup;
 import minevalley.core.api.economy.BankAccount;
 import org.jetbrains.annotations.Contract;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface ApartmentBlock {
      *
      * @return apartment block's unique id
      */
-    int getId();
+    int id();
 
     /**
      * Gets this apartment block's owner. This might be a state-owned group.
@@ -60,7 +61,7 @@ public interface ApartmentBlock {
      */
     @Nonnull
     @Contract(pure = true)
-    List<Apartment> getApartments();
+    List<Apartment> apartments();
 
     /**
      * Get all apartments on a specific floor in this apartment block.
@@ -71,7 +72,7 @@ public interface ApartmentBlock {
      */
     @Nonnull
     @Contract(pure = true)
-    List<Apartment> getApartments(int floor) throws IllegalArgumentException;
+    List<Apartment> apartments(int floor) throws IndexOutOfBoundsException;
 
     /**
      * Gets the amount of floors in this apartment block.
@@ -80,5 +81,7 @@ public interface ApartmentBlock {
      *
      * @return amount of floors as an integer.
      */
-    int getFloors();
+    @Nonnegative
+    @Contract(pure = true)
+    int floors();
 }
