@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @SuppressWarnings("unused")
-public interface Plot extends Residence {
+public interface Plot extends Residence, ApartmentHolder {
 
     /**
      * Only the main tile does have a plot sign.
