@@ -86,16 +86,16 @@ public interface Apartment extends Residence {
     boolean isPremiumOnly();
 
     /**
-     * Gets the residence this apartment belongs to, if it does.
+     * Gets the apartment holder this apartment belongs to, if it does.
      * <ul>
      *     <li>This might be an apartment block this apartment belongs to</li>
      *     <li>...or a plot on which this apartment lies on</li>
      *     <li>...or null, if the apartment is standalone</li>
      * </ul>
      *
-     * @return residence this apartment belongs to
+     * @return apartment holder this apartment belongs to
      */
     @Nullable
     @Contract(pure = true)
-    Residence getParentResidence();
+    ApartmentHolder getHolder();
 }

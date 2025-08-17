@@ -1,7 +1,6 @@
 package minevalley.regions.api.residences;
 
 import minevalley.core.api.corporations.RealEstateGroup;
-import minevalley.core.api.economy.BankAccount;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnegative;
@@ -9,7 +8,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 @SuppressWarnings("unused")
-public interface ApartmentBlock {
+public interface ApartmentBlock extends ApartmentHolder {
 
     /**
      * Gets this apartment block's id that distinguishes it from other apartment blocks.
@@ -27,41 +26,15 @@ public interface ApartmentBlock {
     RealEstateGroup getOwner();
 
     /**
-     * Transfers this apartment block to another real estate group.
-     *
-     * @param newOwner new owner of the apartment block
-     * @throws IllegalArgumentException if the new owner is null
-     */
-    void transfer(@Nonnull RealEstateGroup newOwner) throws IllegalArgumentException;
-
-    /**
-     * Gets the bank account the owner selected for this apartment block.
-     * This bank account might not be the primary bank account of the owner, but must be in his possession
-     *
-     * @return the bank account selected by the owner
-     */
-    @Nonnull
-    @Contract(pure = true)
-    BankAccount getOwnersBankAccount();
-
-    /**
-     * Sets the owners bank account
+     * Gets the amount of floors in this apartment block.
      * <p>
-     * <b>Note:</b> This bank account must be in the owner's possession
+     * <b>Note:</b> The lowest floor is always 0. If there are basement floors, the index of the first floor can be above 0
      *
-     * @param bankAccount bankAccount to set
-     * @throws IllegalArgumentException if bankAccount is null or not in the owner's possession
+     * @return amount of floors as an integer.
      */
-    void setOwnersBankAccount(@Nonnull BankAccount bankAccount) throws IllegalArgumentException;
-
-    /**
-     * Get all apartments that are part of this apartment block.
-     *
-     * @return list of all the apartments that are part of this apartment block.
-     */
-    @Nonnull
+    @Nonnegative
     @Contract(pure = true)
-    List<Apartment> apartments();
+    int floors();
 
     /**
      * Get all apartments on a specific floor in this apartment block.
@@ -73,15 +46,4 @@ public interface ApartmentBlock {
     @Nonnull
     @Contract(pure = true)
     List<Apartment> apartments(int floor) throws IndexOutOfBoundsException;
-
-    /**
-     * Gets the amount of floors in this apartment block.
-     * <p>
-     * <b>Note:</b> The lowest floor is always 0. If there are basement floors, the index of the first floor can be above 0
-     *
-     * @return amount of floors as an integer.
-     */
-    @Nonnegative
-    @Contract(pure = true)
-    int floors();
 }
