@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class Regions {
 
-    private static RegionsServer server;
+    private static RegionsProvider provider;
 
     /**
      * Gets the region with the specific id.
@@ -34,7 +34,7 @@ public class Regions {
     @Nullable
     @Contract(pure = true)
     public static Region getRegion(int id) {
-        return server.getRegion(id);
+        return provider.getRegion(id);
     }
 
     /**
@@ -49,7 +49,7 @@ public class Regions {
     @Nonnull
     @Contract(pure = true)
     public static List<Region> getRegions(@Nonnull Block block) throws IllegalArgumentException {
-        return server.getRegions(block);
+        return provider.getRegions(block);
     }
 
     /**
@@ -78,7 +78,7 @@ public class Regions {
     @Nonnull
     @Contract("_, _ -> new")
     public static Region createRegion(@Nonnull List<Area> included, @Nonnull List<Area> excluded) throws IllegalArgumentException {
-        return server.createRegion(included, excluded);
+        return provider.createRegion(included, excluded);
     }
 
 
@@ -91,7 +91,7 @@ public class Regions {
     @Nullable
     @Contract(pure = true)
     public static Residence getResidence(int id) {
-        return server.getResidence(id);
+        return provider.getResidence(id);
     }
 
     /**
@@ -105,7 +105,7 @@ public class Regions {
     @Nullable
     @Contract("null -> null")
     public static Residence getResidence(@Nullable Region region) {
-        return server.getResidence(region);
+        return provider.getResidence(region);
     }
 
     /**
@@ -175,7 +175,7 @@ public class Regions {
     @Nonnull
     @Contract(pure = true)
     public static List<Residence> getResidences(@Nonnull Registrant registrant) throws IllegalArgumentException {
-        return server.getResidences(registrant);
+        return provider.getResidences(registrant);
     }
 
     /**
@@ -186,7 +186,7 @@ public class Regions {
     @Nonnull
     @Contract(pure = true)
     public static List<Residence> getResidences() {
-        return server.getResidences();
+        return provider.getResidences();
     }
 
     /**
@@ -198,7 +198,7 @@ public class Regions {
     @Nullable
     @Contract(pure = true)
     public static Plot getPlot(int id) {
-        return server.getPlot(id);
+        return provider.getPlot(id);
     }
 
     /**
@@ -250,7 +250,7 @@ public class Regions {
     @Nullable
     @Contract(value = "null -> null", pure = true)
     public static PlotTile getPlotTile(@Nullable Region region) {
-        return server.getPlotTile(region);
+        return provider.getPlotTile(region);
     }
 
 
@@ -263,7 +263,7 @@ public class Regions {
     @Nullable
     @Contract(pure = true)
     public static Apartment getApartment(int id) {
-        return server.getApartment(id);
+        return provider.getApartment(id);
     }
 
     /**
@@ -301,7 +301,7 @@ public class Regions {
     @Nonnull
     @Contract(pure = true)
     public static List<ApartmentBlock> getApartmentBlocks() {
-        return server.getApartmentBlocks();
+        return provider.getApartmentBlocks();
     }
 
     /**
@@ -315,7 +315,7 @@ public class Regions {
     @Contract(pure = true)
     public static List<ApartmentBlock> getApartmentBlocks(@Nonnull RealEstateGroup realEstateGroup)
             throws IllegalArgumentException {
-        return server.getApartmentBlocks(realEstateGroup);
+        return provider.getApartmentBlocks(realEstateGroup);
     }
 
     /**
@@ -327,7 +327,7 @@ public class Regions {
     @Nullable
     @Contract(pure = true)
     public static ApartmentBlock getApartmentBlock(int id) {
-        return server.getApartmentBlock(id);
+        return provider.getApartmentBlock(id);
     }
 
     /**
@@ -338,7 +338,7 @@ public class Regions {
     @Nonnull
     @Contract(pure = true)
     public static List<Street> getStreets() {
-        return server.getStreets();
+        return provider.getStreets();
     }
 
     /**
@@ -350,7 +350,7 @@ public class Regions {
     @Nullable
     @Contract(pure = true)
     public static Street getStreet(int id) {
-        return server.getStreet(id);
+        return provider.getStreet(id);
     }
 
     /**
@@ -361,7 +361,7 @@ public class Regions {
     @Nonnull
     @Contract(pure = true)
     public static List<District> getDistricts() {
-        return server.getDistricts();
+        return provider.getDistricts();
     }
 
     /**
@@ -373,7 +373,7 @@ public class Regions {
     @Nullable
     @Contract(pure = true)
     public static District getDistrict(int id) {
-        return server.getDistrict(id);
+        return provider.getDistrict(id);
     }
 
 
@@ -386,7 +386,7 @@ public class Regions {
     @Nullable
     @Contract("null -> null")
     public static District getDistrict(@Nullable Chunk chunk) {
-        return server.getDistrict(chunk);
+        return provider.getDistrict(chunk);
     }
 
     /**
@@ -426,7 +426,7 @@ public class Regions {
     @Nullable
     @Contract("null -> null")
     public static RadioMast getNearestRadioMast(@Nullable Location location) {
-        return server.getNearestRadioMast(location);
+        return provider.getNearestRadioMast(location);
     }
 
     /**
@@ -440,7 +440,7 @@ public class Regions {
     @Nonnull
     @Contract("_, _ -> new")
     public static Area getArea(@Nonnull Block loc1, @Nonnull Block loc2) throws IllegalArgumentException {
-        return server.getArea(loc1, loc2);
+        return provider.getArea(loc1, loc2);
     }
 
     /**
@@ -453,7 +453,7 @@ public class Regions {
     @Nonnull
     @Contract("_ -> new")
     public static Area getAreaOfBlock(@Nonnull Block block) throws IllegalArgumentException {
-        return server.getArea(block, block);
+        return provider.getArea(block, block);
     }
 
     /**
@@ -469,6 +469,6 @@ public class Regions {
      */
     public static void loadPreset(@Nonnull Area presetArea, @Nonnull Block presetPivot, @Nonnull Block mainWorldPivot)
             throws IllegalArgumentException, IllegalStateException {
-        server.loadPreset(presetArea, presetPivot, mainWorldPivot);
+        provider.loadPreset(presetArea, presetPivot, mainWorldPivot);
     }
 }
