@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @ApiStatus.Internal
-public interface RegionsServer {
+public interface RegionsProvider {
 
     @Nullable
     @Contract(pure = true)
