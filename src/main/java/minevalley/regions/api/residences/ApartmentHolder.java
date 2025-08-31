@@ -1,6 +1,7 @@
 package minevalley.regions.api.residences;
 
 import minevalley.core.api.economy.BankAccount;
+import minevalley.regions.api.structures.Street;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnull;
@@ -8,6 +9,15 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public interface ApartmentHolder {
+
+    /**
+     * Every apartment holder is associated with a street.
+     *
+     * @return this residences' street.
+     */
+    @Nonnull
+    @Contract(pure = true)
+    Street street();
 
     /**
      * Get all apartments that are part of this estate.

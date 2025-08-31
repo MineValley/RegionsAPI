@@ -32,17 +32,6 @@ public interface Residence extends PlayerLocation, Address {
     int id();
 
     /**
-     * Every residence has a street. If this residence is a player-created apartment,
-     * the street is the same as the one of the plot, this apartment lies on.
-     * If the apartment lies on a merged plot, the street will be taken from the plot merges main plot.
-     *
-     * @return this residences' street.
-     */
-    @Nonnull
-    @Contract(pure = true)
-    Street street();
-
-    /**
      * Permissioned users are allowed to build and have access to locked chests (and other locked blocks) if they are set up this way.
      * The list of permissioned users can be edited by the owner or the admins of this residence.
      * <p>
