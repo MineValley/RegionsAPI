@@ -90,12 +90,11 @@ public interface Apartment extends Residence {
      * <ul>
      *     <li>This might be an apartment block this apartment belongs to</li>
      *     <li>...or a plot on which this apartment lies on</li>
-     *     <li>...or null, if the apartment is standalone</li>
      * </ul>
      *
      * @return apartment holder this apartment belongs to
      */
-    @Nullable
+    @Nonnull
     @Contract(pure = true)
     ApartmentHolder getHolder();
 }
