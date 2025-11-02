@@ -112,7 +112,7 @@ public class Regions {
      * Gets the dominant residence with the specific location.
      *
      * @param location location to get residence from
-     * @return most dominant residence in which the specific location lies in
+     * @return the most dominant residence in which the specific location lies in
      */
     @Nullable
     @Contract("null -> null")
@@ -125,7 +125,7 @@ public class Regions {
      * Gets the most dominant residence with the specific block.
      *
      * @param block block to get residence from
-     * @return most dominant residence in which the specific block lies in
+     * @return the most dominant residence in which the specific block lies in
      * @throws IllegalArgumentException if block is null
      */
     @Nullable
