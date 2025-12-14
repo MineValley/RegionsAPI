@@ -10,7 +10,9 @@ import minevalley.regions.api.structures.RadioMast;
 import minevalley.regions.api.structures.Street;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnull;
@@ -470,5 +472,54 @@ public class Regions {
     public static void loadPreset(@Nonnull Area presetArea, @Nonnull Block presetPivot, @Nonnull Block mainWorldPivot)
             throws IllegalArgumentException, IllegalStateException {
         provider.loadPreset(presetArea, presetPivot, mainWorldPivot);
+    }
+
+    /**
+     * Moves the source area to the target pivot position.
+     *
+     * @param world        the world in which the area is located
+     * @param sourceArea   the area to move
+     * @param sourcePivot  the pivot point of the source area
+     * @param targetPivot  the target pivot point to move the area to
+     * @param moveEntities whether to move entities located in the area as well
+     * @throws IllegalArgumentException if any of the parameters are null
+     */
+    public static void moveArea(@Nonnull World world, @Nonnull Area sourceArea, @Nonnull Block sourcePivot,
+                                @Nonnull Block targetPivot, boolean moveEntities) throws IllegalArgumentException {
+        moveArea(world, sourceArea,
+                targetPivot.getX() - sourcePivot.getX(),
+                targetPivot.getY() - sourcePivot.getY(),
+                targetPivot.getZ() - sourcePivot.getZ(),
+                moveEntities);
+    }
+
+    /**
+     * Moves the source area by the given vector.
+     *
+     * @param world        the world in which the area is located
+     * @param sourceArea   the area to move
+     * @param vector       the vector by which to move the area
+     * @param moveEntities whether to move entities located in the area as well
+     * @throws IllegalArgumentException if any of the parameters are null
+     */
+    public static void moveArea(@Nonnull World world, @Nonnull Area sourceArea, @Nonnull Vector vector,
+                                boolean moveEntities) throws IllegalArgumentException {
+        moveArea(world, sourceArea, vector.getBlockX(), vector.getBlockY(), vector.getBlockZ(), moveEntities);
+    }
+
+    /**
+     * Moves the source area by the given deltas.
+     *
+     * @param world        the world in which the area is located
+     * @param sourceArea   the area to move
+     * @param dx           amount of blocks to move in x direction
+     * @param dy           amount of blocks to move in y direction
+     * @param dz           amount of blocks to move in z direction
+     * @param moveEntities whether to move entities located in the area as well
+     * @throws IllegalArgumentException if any of the parameters are null
+     */
+    public static void moveArea(@Nonnull World world, @Nonnull Area sourceArea, int dx, int dy, int dz,
+                                boolean moveEntities) throws IllegalArgumentException {
+        provider.moveArea(world, sourceArea, dx, dy, dz, moveEntities);
     }
 }

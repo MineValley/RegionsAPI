@@ -10,6 +10,7 @@ import minevalley.regions.api.structures.RadioMast;
 import minevalley.regions.api.structures.Street;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
@@ -104,4 +105,7 @@ public interface RegionsProvider {
 
     void loadPreset(@Nonnull Area presetArea, @Nonnull Block presetPivot, @Nonnull Block mainWorldPivot)
             throws IllegalArgumentException, IllegalStateException;
+
+    void moveArea(@Nonnull World world, @Nonnull Area sourceArea, int dx, int dy, int dz,
+                  boolean moveEntities) throws IllegalArgumentException;
 }
