@@ -107,7 +107,7 @@ public interface RegionsProvider {
             throws IllegalArgumentException, IllegalStateException;
 
     @Nonnull
-    @Contract("_, _, _, _, _, _ -> new")
+    @Contract("_, _, _, _, _, _, _ -> new")
     Area moveArea(@Nonnull World world, @Nonnull Area sourceArea, int dx, int dy, int dz,
-                  boolean moveEntities) throws IllegalArgumentException;
+                  boolean moveEntities, float teleportationMargin) throws IllegalArgumentException;
 }

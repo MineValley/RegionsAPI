@@ -477,54 +477,63 @@ public class Regions {
     /**
      * Moves the source area to the target pivot position.
      *
-     * @param world        the world in which the area is located
-     * @param sourceArea   the area to move
-     * @param sourcePivot  the pivot point of the source area
-     * @param targetPivot  the target pivot point to move the area to
-     * @param moveEntities whether to move entities located in the area as well
-     * @return the moved area
-     * @throws IllegalArgumentException if any of the parameters are null
-     */
-    public static Area moveArea(@Nonnull World world, @Nonnull Area sourceArea, @Nonnull Block sourcePivot,
-                                @Nonnull Block targetPivot, boolean moveEntities) throws IllegalArgumentException {
-        return moveArea(world, sourceArea,
-                targetPivot.getX() - sourcePivot.getX(),
-                targetPivot.getY() - sourcePivot.getY(),
-                targetPivot.getZ() - sourcePivot.getZ(),
-                moveEntities);
-    }
-
-    /**
-     * Moves the source area by the given vector.
-     *
-     * @param world        the world in which the area is located
-     * @param sourceArea   the area to move
-     * @param vector       the vector by which to move the area
-     * @param moveEntities whether to move entities located in the area as well
-     * @return the moved area
-     * @throws IllegalArgumentException if any of the parameters are null
-     */
-    public static Area moveArea(@Nonnull World world, @Nonnull Area sourceArea, @Nonnull Vector vector,
-                                boolean moveEntities) throws IllegalArgumentException {
-        return moveArea(world, sourceArea, vector.getBlockX(), vector.getBlockY(), vector.getBlockZ(), moveEntities);
-    }
-
-    /**
-     * Moves the source area by the given deltas.
-     *
-     * @param world        the world in which the area is located
-     * @param sourceArea   the area to move
-     * @param dx           amount of blocks to move in x direction
-     * @param dy           amount of blocks to move in y direction
-     * @param dz           amount of blocks to move in z direction
-     * @param moveEntities whether to move entities located in the area as well
+     * @param world               the world in which the area is located
+     * @param sourceArea          the area to move
+     * @param sourcePivot         the pivot point of the source area
+     * @param targetPivot         the target pivot point to move the area to
+     * @param moveEntities        whether to move entities located in the area as well
+     * @param teleportationMargin margin to add when teleporting entities
      * @return the moved area
      * @throws IllegalArgumentException if any of the parameters are null
      */
     @Nonnull
     @Contract("_, _, _, _, _, _ -> new")
+    public static Area moveArea(@Nonnull World world, @Nonnull Area sourceArea, @Nonnull Block sourcePivot,
+                                @Nonnull Block targetPivot, boolean moveEntities, float teleportationMargin)
+            throws IllegalArgumentException {
+        return moveArea(world, sourceArea,
+                targetPivot.getX() - sourcePivot.getX(),
+                targetPivot.getY() - sourcePivot.getY(),
+                targetPivot.getZ() - sourcePivot.getZ(),
+                moveEntities, teleportationMargin);
+    }
+
+    /**
+     * Moves the source area by the given vector.
+     *
+     * @param world               the world in which the area is located
+     * @param sourceArea          the area to move
+     * @param vector              the vector by which to move the area
+     * @param moveEntities        whether to move entities located in the area as well
+     * @param teleportationMargin margin to add when teleporting entities
+     * @return the moved area
+     * @throws IllegalArgumentException if any of the parameters are null
+     */
+    @Nonnull
+    @Contract("_, _, _, _, _ -> new")
+    public static Area moveArea(@Nonnull World world, @Nonnull Area sourceArea, @Nonnull Vector vector,
+                                boolean moveEntities, float teleportationMargin) throws IllegalArgumentException {
+        return moveArea(world, sourceArea, vector.getBlockX(), vector.getBlockY(), vector.getBlockZ(), moveEntities,
+                teleportationMargin);
+    }
+
+    /**
+     * Moves the source area by the given deltas.
+     *
+     * @param world               the world in which the area is located
+     * @param sourceArea          the area to move
+     * @param dx                  amount of blocks to move in x direction
+     * @param dy                  amount of blocks to move in y direction
+     * @param dz                  amount of blocks to move in z direction
+     * @param moveEntities        whether to move entities located in the area as well
+     * @param teleportationMargin margin to add when teleporting entities
+     * @return the moved area
+     * @throws IllegalArgumentException if any of the parameters are null
+     */
+    @Nonnull
+    @Contract("_, _, _, _, _, _, _ -> new")
     public static Area moveArea(@Nonnull World world, @Nonnull Area sourceArea, int dx, int dy, int dz,
-                                boolean moveEntities) throws IllegalArgumentException {
-        return provider.moveArea(world, sourceArea, dx, dy, dz, moveEntities);
+                                boolean moveEntities, float teleportationMargin) throws IllegalArgumentException {
+        return provider.moveArea(world, sourceArea, dx, dy, dz, moveEntities, teleportationMargin);
     }
 }
