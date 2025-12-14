@@ -106,6 +106,8 @@ public interface RegionsProvider {
     void loadPreset(@Nonnull Area presetArea, @Nonnull Block presetPivot, @Nonnull Block mainWorldPivot)
             throws IllegalArgumentException, IllegalStateException;
 
-    void moveArea(@Nonnull World world, @Nonnull Area sourceArea, int dx, int dy, int dz,
+    @Nonnull
+    @Contract("_, _, _, _, _, _ -> new")
+    Area moveArea(@Nonnull World world, @Nonnull Area sourceArea, int dx, int dy, int dz,
                   boolean moveEntities) throws IllegalArgumentException;
 }

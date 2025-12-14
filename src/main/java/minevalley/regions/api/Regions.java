@@ -482,11 +482,12 @@ public class Regions {
      * @param sourcePivot  the pivot point of the source area
      * @param targetPivot  the target pivot point to move the area to
      * @param moveEntities whether to move entities located in the area as well
+     * @return the moved area
      * @throws IllegalArgumentException if any of the parameters are null
      */
-    public static void moveArea(@Nonnull World world, @Nonnull Area sourceArea, @Nonnull Block sourcePivot,
+    public static Area moveArea(@Nonnull World world, @Nonnull Area sourceArea, @Nonnull Block sourcePivot,
                                 @Nonnull Block targetPivot, boolean moveEntities) throws IllegalArgumentException {
-        moveArea(world, sourceArea,
+        return moveArea(world, sourceArea,
                 targetPivot.getX() - sourcePivot.getX(),
                 targetPivot.getY() - sourcePivot.getY(),
                 targetPivot.getZ() - sourcePivot.getZ(),
@@ -500,11 +501,12 @@ public class Regions {
      * @param sourceArea   the area to move
      * @param vector       the vector by which to move the area
      * @param moveEntities whether to move entities located in the area as well
+     * @return the moved area
      * @throws IllegalArgumentException if any of the parameters are null
      */
-    public static void moveArea(@Nonnull World world, @Nonnull Area sourceArea, @Nonnull Vector vector,
+    public static Area moveArea(@Nonnull World world, @Nonnull Area sourceArea, @Nonnull Vector vector,
                                 boolean moveEntities) throws IllegalArgumentException {
-        moveArea(world, sourceArea, vector.getBlockX(), vector.getBlockY(), vector.getBlockZ(), moveEntities);
+        return moveArea(world, sourceArea, vector.getBlockX(), vector.getBlockY(), vector.getBlockZ(), moveEntities);
     }
 
     /**
@@ -516,10 +518,13 @@ public class Regions {
      * @param dy           amount of blocks to move in y direction
      * @param dz           amount of blocks to move in z direction
      * @param moveEntities whether to move entities located in the area as well
+     * @return the moved area
      * @throws IllegalArgumentException if any of the parameters are null
      */
-    public static void moveArea(@Nonnull World world, @Nonnull Area sourceArea, int dx, int dy, int dz,
+    @Nonnull
+    @Contract("_, _, _, _, _, _ -> new")
+    public static Area moveArea(@Nonnull World world, @Nonnull Area sourceArea, int dx, int dy, int dz,
                                 boolean moveEntities) throws IllegalArgumentException {
-        provider.moveArea(world, sourceArea, dx, dy, dz, moveEntities);
+        return provider.moveArea(world, sourceArea, dx, dy, dz, moveEntities);
     }
 }
