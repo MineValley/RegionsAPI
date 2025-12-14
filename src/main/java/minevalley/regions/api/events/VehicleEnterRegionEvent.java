@@ -3,7 +3,7 @@ package minevalley.regions.api.events;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import minevalley.core.api.vehicles.Vehicle;
+import minevalley.fastcar.api.physics.PhysicsObject;
 import minevalley.regions.api.core.Region;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -27,7 +27,7 @@ public class VehicleEnterRegionEvent extends Event implements Cancellable {
     /**
      * Vehicle that enters the region.
      */
-    private final Vehicle vehicle;
+    private final PhysicsObject<?> vehicle;
 
     /**
      * Region that is entered by the vehicle.

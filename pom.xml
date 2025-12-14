@@ -83,8 +83,18 @@
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
         <repository>
-            <id>github</id>
+            <id>core-api</id>
             <url>https://maven.pkg.github.com/MineValley/CoreAPI</url>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>fastcar-api</id>
+            <url>https://maven.pkg.github.com/MineValley/FastCarAPI</url>
             <releases>
                 <updatePolicy>always</updatePolicy>
             </releases>
@@ -100,6 +110,11 @@
             <groupId>minevalley.core</groupId>
             <artifactId>api</artifactId>
             <version>${core-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>minevalley.fastcar</groupId>
+            <artifactId>api</artifactId>
+            <version>0.1.2</version>
         </dependency>
 
         <!-- Paper -->
