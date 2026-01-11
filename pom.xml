@@ -7,8 +7,8 @@
     <name>RegionsAPI</name>
 
     <properties>
-        <version>0.5.3</version>
-        <core-api.version>1.299.2</core-api.version>
+        <version>0.5.4</version>
+        <core-api.version>1.299.6</core-api.version>
 
         <lombok.version>1.18.30</lombok.version>
 
