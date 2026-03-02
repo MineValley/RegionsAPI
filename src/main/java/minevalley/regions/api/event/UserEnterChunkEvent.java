@@ -1,4 +1,4 @@
-package minevalley.regions.api.events;
+package minevalley.regions.api.event;
 
 import lombok.Getter;
 import lombok.Setter;

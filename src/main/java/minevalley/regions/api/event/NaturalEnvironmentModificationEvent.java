@@ -1,17 +1,18 @@
-package minevalley.regions.api.events;
+package minevalley.regions.api.event;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import minevalley.core.api.user.OnlineUser;
-import minevalley.core.api.user.event.OnlineUserEvent;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
 
 import javax.annotation.Nonnull;
 
 @Getter
 @SuppressWarnings("unused")
-public class UserInteractEnvironmentEvent extends OnlineUserEvent {
+public class NaturalEnvironmentModificationEvent extends Event {
+
+    public static final HandlerList HANDLER_LIST = new HandlerList();
 
     private final Block block;
     private final boolean nativelyInterrupted;
@@ -20,8 +21,7 @@ public class UserInteractEnvironmentEvent extends OnlineUserEvent {
     @Getter(AccessLevel.NONE)
     private boolean overwrite;
 
-    public UserInteractEnvironmentEvent(@Nonnull OnlineUser user, @Nonnull Block block, boolean nativelyInterrupted, @Nonnull Event underlyingEvent) {
-        super(user);
+    public NaturalEnvironmentModificationEvent(@Nonnull Block block, boolean nativelyInterrupted, @Nonnull Event underlyingEvent) {
         this.block = block;
         this.nativelyInterrupted = nativelyInterrupted;
         this.underlyingEvent = underlyingEvent;
@@ -58,4 +58,14 @@ public class UserInteractEnvironmentEvent extends OnlineUserEvent {
     public boolean isFinallyAllowed() {
         return overwrite;
     }
+
+    public static HandlerList getHandlerList() {
+        return HANDLER_LIST;
+    }
+
+    @Override
+    public @Nonnull HandlerList getHandlers() {
+        return HANDLER_LIST;
+    }
+
 }
