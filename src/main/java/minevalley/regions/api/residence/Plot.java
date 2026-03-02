@@ -1,4 +1,4 @@
-package minevalley.regions.api.residences;
+package minevalley.regions.api.residence;
 
 import minevalley.core.api.Registrant;
 import minevalley.regions.api.core.Region;

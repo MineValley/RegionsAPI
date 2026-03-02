@@ -4,7 +4,7 @@ import minevalley.core.api.Registrant;
 import minevalley.core.api.corporation.RealEstateGroup;
 import minevalley.regions.api.core.Area;
 import minevalley.regions.api.core.Region;
-import minevalley.regions.api.residences.*;
+import minevalley.regions.api.residence.*;
 import minevalley.regions.api.structures.District;
 import minevalley.regions.api.structures.RadioMast;
 import minevalley.regions.api.structures.Street;
