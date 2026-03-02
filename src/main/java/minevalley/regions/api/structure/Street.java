@@ -1,4 +1,4 @@
-package minevalley.regions.api.structures;
+package minevalley.regions.api.structure;
 
 import lombok.Setter;
 import minevalley.core.api.localization.PlayerLocation;

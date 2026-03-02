@@ -1,4 +1,4 @@
-package minevalley.regions.api.structures;
+package minevalley.regions.api.structure;
 
 import minevalley.core.api.user.OnlineUser;
 import org.bukkit.Location;

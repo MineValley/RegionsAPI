@@ -1,7 +1,7 @@
 package minevalley.regions.api.residence;
 
 import minevalley.core.api.banking.BankAccount;
-import minevalley.regions.api.structures.Street;
+import minevalley.regions.api.structure.Street;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnull;

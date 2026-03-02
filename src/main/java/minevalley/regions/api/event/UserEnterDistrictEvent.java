@@ -3,7 +3,7 @@ package minevalley.regions.api.event;
 import lombok.Getter;
 import minevalley.core.api.user.OnlineUser;
 import minevalley.core.api.user.event.OnlineUserEvent;
-import minevalley.regions.api.structures.District;
+import minevalley.regions.api.structure.District;
 
 import javax.annotation.Nonnull;
 
