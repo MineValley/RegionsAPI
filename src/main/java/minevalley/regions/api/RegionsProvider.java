@@ -1,7 +1,7 @@
 package minevalley.regions.api;
 
 import minevalley.core.api.Registrant;
-import minevalley.core.api.corporations.RealEstateGroup;
+import minevalley.core.api.corporation.RealEstateGroup;
 import minevalley.regions.api.core.Area;
 import minevalley.regions.api.core.Region;
 import minevalley.regions.api.residences.*;

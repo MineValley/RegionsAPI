@@ -1,6 +1,6 @@
 package minevalley.regions.api.core;
 
-import minevalley.core.api.users.OnlineUser;
+import minevalley.core.api.user.OnlineUser;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -40,7 +40,7 @@ public interface Region {
     /**
      * Gets a list with the chunks that this region lies in.
      *
-     * @return list of chunks this region lies in
+     * @return a list of chunks this region lies in
      */
     @Nonnull
     List<Chunk> chunks();

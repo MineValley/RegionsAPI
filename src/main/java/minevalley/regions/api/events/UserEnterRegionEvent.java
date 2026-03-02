@@ -2,8 +2,8 @@ package minevalley.regions.api.events;
 
 import lombok.Getter;
 import lombok.Setter;
-import minevalley.core.api.users.OnlineUser;
-import minevalley.core.api.users.events.OnlineUserEvent;
+import minevalley.core.api.user.OnlineUser;
+import minevalley.core.api.user.event.OnlineUserEvent;
 import minevalley.regions.api.core.Region;
 import org.bukkit.event.Cancellable;
 

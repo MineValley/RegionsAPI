@@ -1,6 +1,6 @@
 package minevalley.regions.api.structures;
 
-import minevalley.core.api.users.OnlineUser;
+import minevalley.core.api.user.OnlineUser;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.jetbrains.annotations.Contract;

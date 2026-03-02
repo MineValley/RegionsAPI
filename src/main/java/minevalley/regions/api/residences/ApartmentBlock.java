@@ -1,6 +1,6 @@
 package minevalley.regions.api.residences;
 
-import minevalley.core.api.corporations.RealEstateGroup;
+import minevalley.core.api.corporation.RealEstateGroup;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnegative;

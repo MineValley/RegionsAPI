@@ -1,8 +1,8 @@
 package minevalley.regions.api.events;
 
 import lombok.Getter;
-import minevalley.core.api.users.OnlineUser;
-import minevalley.core.api.users.events.OnlineUserEvent;
+import minevalley.core.api.user.OnlineUser;
+import minevalley.core.api.user.event.OnlineUserEvent;
 import org.bukkit.Chunk;
 
 import javax.annotation.Nonnull;

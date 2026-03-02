@@ -1,6 +1,5 @@
 package minevalley.regions.api.structures;
 
-
 import lombok.Setter;
 import minevalley.core.api.localization.PlayerLocation;
 import org.bukkit.Location;

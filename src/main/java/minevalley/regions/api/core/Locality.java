@@ -33,7 +33,7 @@ public interface Locality extends PlayerLocation {
     Direction signRotation();
 
     /**
-     * Localities may overlap so it is crucial to be able to prioritize which locality is applied in such cases.
+     * Localities may overlap, so it is crucial to be able to prioritize which locality is applied in such cases.
      * The locality with the highest priority is applied.
      *
      * @return priority of this locality

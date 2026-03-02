@@ -1,6 +1,6 @@
 package minevalley.regions.api.residences;
 
-import minevalley.core.api.users.User;
+import minevalley.core.api.user.User;
 
 import javax.annotation.Nonnull;
 import java.util.Date;
