@@ -35,11 +35,13 @@
             <groupId>minevalley.core</groupId>
             <artifactId>api</artifactId>
             <version>1.304.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>minevalley.fastcar</groupId>
             <artifactId>api</artifactId>
             <version>0.2.4</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Paper -->
