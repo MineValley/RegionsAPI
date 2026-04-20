@@ -70,22 +70,10 @@
         <repository>
             <id>github</id>
             <url>https://maven.pkg.github.com/MineValley/CoreAPI</url>
-            <releases>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
         </repository>
         <repository>
             <id>fastcar-api</id>
             <url>https://maven.pkg.github.com/MineValley/FastCarAPI</url>
-            <releases>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
         </repository>
     </repositories>
 
