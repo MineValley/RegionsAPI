@@ -30,11 +30,11 @@
     </distributionManagement>
 
     <dependencies>
-        <!-- CoreAPI -->
+        <!-- MineValley APIs -->
         <dependency>
-            <groupId>minevalley.core</groupId>
-            <artifactId>api</artifactId>
-            <version>1.304.0</version>
+            <groupId>eu.minevalley</groupId>
+            <artifactId>core-api</artifactId>
+            <version>1.306.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
