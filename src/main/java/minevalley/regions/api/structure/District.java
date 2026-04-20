@@ -1,7 +1,7 @@
 package minevalley.regions.api.structure;
 
-import minevalley.core.api.localization.PlayerLocation;
-import minevalley.core.api.user.OnlineUser;
+import eu.minevalley.core.api.user.OnlineUser;
+import eu.minevalley.proxima.api.localization.PlayerLocation;
 import org.bukkit.Chunk;
 import org.jetbrains.annotations.Contract;
 

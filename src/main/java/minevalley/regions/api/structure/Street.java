@@ -1,7 +1,7 @@
 package minevalley.regions.api.structure;
 
+import eu.minevalley.proxima.api.localization.PlayerLocation;
 import lombok.Setter;
-import minevalley.core.api.localization.PlayerLocation;
 import org.bukkit.Location;
 import org.jetbrains.annotations.Contract;
 

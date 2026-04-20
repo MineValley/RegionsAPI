@@ -1,10 +1,10 @@
 package minevalley.regions.api.residence;
 
-import minevalley.core.api.Registrant;
-import minevalley.core.api.localization.Address;
-import minevalley.core.api.localization.PlayerLocation;
-import minevalley.core.api.user.User;
-import minevalley.core.api.user.team.TeamMember;
+import eu.minevalley.proxima.api.Registrant;
+import eu.minevalley.proxima.api.localization.Address;
+import eu.minevalley.proxima.api.localization.PlayerLocation;
+import eu.minevalley.proxima.api.user.User;
+import eu.minevalley.proxima.api.user.team.TeamMember;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.jetbrains.annotations.Contract;

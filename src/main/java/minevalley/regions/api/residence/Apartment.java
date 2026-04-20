@@ -1,8 +1,8 @@
 package minevalley.regions.api.residence;
 
-import minevalley.core.api.Registrant;
-import minevalley.core.api.banking.BankAccount;
-import minevalley.core.api.corporation.RealEstateGroup;
+import eu.minevalley.proxima.api.Registrant;
+import eu.minevalley.proxima.api.banking.BankAccount;
+import eu.minevalley.proxima.api.corporation.RealEstateGroup;
 import minevalley.regions.api.core.Region;
 import org.jetbrains.annotations.Contract;
 

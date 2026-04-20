@@ -1,8 +1,8 @@
 package minevalley.regions.api.event;
 
+import eu.minevalley.core.api.user.OnlineUser;
+import eu.minevalley.core.api.user.OnlineUserEvent;
 import lombok.Getter;
-import minevalley.core.api.user.OnlineUser;
-import minevalley.core.api.user.event.OnlineUserEvent;
 import minevalley.regions.api.structure.District;
 
 import javax.annotation.Nonnull;

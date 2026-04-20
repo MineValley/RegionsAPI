@@ -1,6 +1,6 @@
 package minevalley.regions.api.core;
 
-import minevalley.core.api.localization.PlayerLocation;
+import eu.minevalley.proxima.api.localization.PlayerLocation;
 import org.bukkit.block.Block;
 
 import javax.annotation.Nonnull;

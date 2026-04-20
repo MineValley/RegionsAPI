@@ -1,9 +1,9 @@
 package minevalley.regions.api.event;
 
+import eu.minevalley.core.api.user.OnlineUser;
+import eu.minevalley.core.api.user.OnlineUserEvent;
 import lombok.Getter;
 import lombok.Setter;
-import minevalley.core.api.user.OnlineUser;
-import minevalley.core.api.user.event.OnlineUserEvent;
 import minevalley.regions.api.core.Region;
 import org.bukkit.event.Cancellable;
 
@@ -13,6 +13,7 @@ import javax.annotation.Nonnull;
  * This event is called when a user enters a region.
  */
 @Getter
+@SuppressWarnings("unused")
 public class UserEnterRegionEvent extends OnlineUserEvent implements Cancellable {
 
     @Setter

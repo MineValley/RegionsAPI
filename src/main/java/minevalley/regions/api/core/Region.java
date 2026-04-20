@@ -1,6 +1,6 @@
 package minevalley.regions.api.core;
 
-import minevalley.core.api.user.OnlineUser;
+import eu.minevalley.core.api.user.OnlineUser;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.block.Block;

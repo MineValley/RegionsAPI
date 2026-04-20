@@ -1,9 +1,9 @@
 package minevalley.regions.api.event;
 
+import eu.minevalley.fastcar.api.physics.PhysicsObject;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import minevalley.fastcar.api.physics.PhysicsObject;
 import minevalley.regions.api.core.Region;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;

@@ -1,6 +1,6 @@
 package minevalley.regions.api.residence;
 
-import minevalley.core.api.user.User;
+import eu.minevalley.proxima.api.user.User;
 
 import javax.annotation.Nonnull;
 import java.util.Date;

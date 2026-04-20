@@ -1,9 +1,9 @@
 package minevalley.regions.api.event;
 
+import eu.minevalley.core.api.user.OnlineUser;
+import eu.minevalley.core.api.user.OnlineUserEvent;
 import lombok.AccessLevel;
 import lombok.Getter;
-import minevalley.core.api.user.OnlineUser;
-import minevalley.core.api.user.event.OnlineUserEvent;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 
@@ -20,7 +20,8 @@ public class UserInteractEnvironmentEvent extends OnlineUserEvent {
     @Getter(AccessLevel.NONE)
     private boolean overwrite;
 
-    public UserInteractEnvironmentEvent(@Nonnull OnlineUser user, @Nonnull Block block, boolean nativelyInterrupted, @Nonnull Event underlyingEvent) {
+    public UserInteractEnvironmentEvent(@Nonnull OnlineUser user, @Nonnull Block block, boolean nativelyInterrupted,
+                                        @Nonnull Event underlyingEvent) {
         super(user);
         this.block = block;
         this.nativelyInterrupted = nativelyInterrupted;

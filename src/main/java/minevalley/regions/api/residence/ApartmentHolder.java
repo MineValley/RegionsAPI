@@ -1,6 +1,6 @@
 package minevalley.regions.api.residence;
 
-import minevalley.core.api.banking.BankAccount;
+import eu.minevalley.proxima.api.banking.BankAccount;
 import minevalley.regions.api.structure.Street;
 import org.jetbrains.annotations.Contract;
 

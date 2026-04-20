@@ -1,6 +1,6 @@
 package minevalley.regions.api.residence;
 
-import minevalley.core.api.Registrant;
+import eu.minevalley.proxima.api.Registrant;
 import minevalley.regions.api.core.Region;
 import org.jetbrains.annotations.Contract;
 
