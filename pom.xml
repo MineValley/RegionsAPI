@@ -38,9 +38,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>minevalley.fastcar</groupId>
-            <artifactId>api</artifactId>
-            <version>0.2.4</version>
+            <groupId>eu.minevalley</groupId>
+            <artifactId>fastcar-api</artifactId>
+            <version>0.4.0</version>
             <scope>provided</scope>
         </dependency>
 
